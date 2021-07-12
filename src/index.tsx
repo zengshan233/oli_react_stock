@@ -1,24 +1,22 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './scss/index.scss';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { Router, Route, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
+import 'lib-flexible';
 
 const browserHistory = createBrowserHistory();
 
 ReactDOM.render(
-  <React.StrictMode>
-      <Router history={browserHistory}>
-        <Switch>
-          <Route
-            path="/"
-            component={App}
-          />
-        </Switch>
-      </Router>
-  </React.StrictMode>,
+    <Router history={browserHistory}>
+      <Switch>
+        <Route
+          path="/"
+          component={App}
+        />
+      </Switch>
+    </Router>,
   document.getElementById('root')
 );
 

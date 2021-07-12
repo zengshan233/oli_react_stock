@@ -1,18 +1,19 @@
-import { observable, action } from "mobx";
+import { makeAutoObservable, } from "mobx";
 import ChartsConfig from "../config/ChartsConfig";
-import { OhlcData,  VolumeData } from "../models/ChartModels";
+import { OhlcData, VolumeData } from "../models/ChartModels";
 
 class ChartStore {
-  public Highcharts: any = (window as any).Highcharts;
 
-  @observable timer;
+  moreOptions: boolean = false;
+
   constructor() {
-    this.timer = 0;
+    makeAutoObservable(this);
   }
 
   public paintChart() {
     var _self = this;
-    this.Highcharts.getJSON('http://oliquantdemo-env.eba-fepvtuwm.ap-southeast-2.elasticbeanstalk.com/prices?symbol=8CO_ASX', function (data: any) {
+    var Highcharts: any = (window as any).Highcharts;
+    Highcharts.getJSON('http://oliquantdemo-env.eba-fepvtuwm.ap-southeast-2.elasticbeanstalk.com/prices?symbol=8CO_ASX', function (data: any) {
       let ohlc: Array<OhlcData> = [],
         volume: Array<VolumeData> = [];
       for (var i in data) {
@@ -27,10 +28,15 @@ class ChartStore {
       }
       ohlc.sort((a, b) => a.x - b.x);
       volume.sort((a, b) => a.x - b.x);
-      _self.Highcharts.stockChart('container', ChartsConfig.setChart(ohlc, volume));
-      _self.Highcharts.setOptions(ChartsConfig.langOptions);
-      _self.Highcharts.dateFormat();
+      Highcharts.stockChart('container', ChartsConfig.setChart(ohlc, volume));
+      Highcharts.setOptions(ChartsConfig.langOptions);
+      Highcharts.dateFormat();
     });
+  }
+
+  showMore() {
+    console.log("showmoreeee");
+    this.moreOptions = !this.moreOptions;
   }
 }
 

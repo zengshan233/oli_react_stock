@@ -15,6 +15,8 @@ class ChartsConfig {
             new ChartOptionItem(OptionType.shapeCircle, 'Circle', 'circle.svg'),
             new ChartOptionItem(OptionType.shapeRectangle, 'Rectangle', 'rectangle.svg'),
         ], 'Shapes'),
+      ]
+    public options: Array<ChartOptions> = [
         new ChartOptions('segment.svg', [
             new ChartOptionItem(OptionType.lineSegment, 'Segment', 'segment.svg'),
             new ChartOptionItem(OptionType.lineArrowSegment, 'Arrow Segment', 'arrow-segment.svg'),
@@ -24,8 +26,7 @@ class ChartsConfig {
             new ChartOptionItem(OptionType.lineArrow, 'Arrow', 'arrow-line.svg'),
             new ChartOptionItem(OptionType.lineHorizontal, 'Horizontal', 'horizontal-line.svg'),
             new ChartOptionItem(OptionType.lineVertical, 'Vertical', 'vertical-line.svg'),
-        ], 'Lines')]
-    public options: Array<ChartOptions> = [
+        ], 'Lines'),
         new ChartOptions('elliott-3.svg', [
             new ChartOptionItem(OptionType.elliott3, 'Elliott 3', 'elliott-3.svg'),
             new ChartOptionItem(OptionType.elliott5, 'Elliott 5', 'elliott-5.svg'),

@@ -1,18 +1,19 @@
 import { observer } from 'mobx-react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import ChartsConfig from '../../config/ChartsConfig';
 import './Chart.scss';
-import chartStore from '../../stores/ChartStore';
-import Menu from './OptionMenu';
-
-
+import chartStoreContext from '../../stores/ChartStore';
+import ChartStore from '../../stores/ChartStore';
 
 
 export const Charts = observer(() => {
   const optionsConfig: ChartsConfig = new ChartsConfig();
+  useContext
+
   useEffect(() => {
-    chartStore.paintChart();
+    ChartStore.paintChart();
   }, []);
+
   let optionList = optionsConfig.basicOptions.map((tab, idx) => (
     <li key={idx} className={tab.type || tab.options[0].type} title="Simple shapes">
       <img className="highcharts-menu-item-btn" src={require(`../../images/${tab.icon}`).default}></img>
@@ -27,7 +28,7 @@ export const Charts = observer(() => {
       </ul>
     </li>
   ));
-  optionList.push(<Menu />)
+  optionList.push(<li className="more" onClick={() => { ChartStore.showMore() }}> <img src={require(`../../images/more.svg`).default}></img></li>);
   optionList.push(<div className="clear"></div>);
   return (
     <div className="chart-wrapper">
@@ -60,9 +61,26 @@ export const Charts = observer(() => {
           <ul className="highcharts-stocktools-toolbar stocktools-toolbar">
             {optionList}
           </ul>
+          {ChartStore.moreOptions && <ul className="highcharts-stocktools-toolbar stocktools-toolbar">
+            {optionsConfig.options.map((tab, idx) => (
+              <li key={idx} className={tab.type || tab.options[0].type} title="Simple shapes">
+                <img className="highcharts-menu-item-btn" src={require(`../../images/${tab.icon}`).default}></img>
+                {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
+                <ul>
+                  {tab.options.map((option, i) => (
+                    <li key={i} className={option.type} title={option.lable} onClick={() => { }} >
+                      <img className="highcharts-menu-item-btn" src={require(`../../images/${option.icon}`).default}></img>
+                      <span className="highcharts-menu-item-title">{option.lable}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>}
         </div>
       </div>
       <div id="container" className="chart"></div>
+      <div className="clear"></div>
     </div>
   );
 })

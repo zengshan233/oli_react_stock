@@ -33,3 +33,25 @@
     transform: rotate(360deg);
   }
 }
+
+.test{
+  height: 500PX;
+  width: 750px;
+  background-color: orange;
+}
+.tab{
+  height: 20PX;
+  width: 750px;
+  background-color: blue;
+  position: sticky;
+  top: 0;
+}
+.testq{
+  height: 500PX;
+  width: 750px;
+  background-color: red;
+}
+
+.clear {
+  clear: both;
+}
