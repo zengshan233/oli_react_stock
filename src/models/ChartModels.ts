@@ -42,12 +42,13 @@ enum OptionType {
 
 
 
+
 class ChartOptions {
     public lable?: string;
     public icon: string;
     public options: Array<ChartOptionItem>;
     public type?: OptionType;
-    constructor( _icon: string, _options: Array<ChartOptionItem>,_lable?: string, _type?: OptionType) {
+    constructor(_icon: string, _options: Array<ChartOptionItem>, _lable?: string, _type?: OptionType) {
         this.type = _type;
         this.lable = _lable;
         this.icon = _icon;
@@ -92,4 +93,36 @@ class VolumeData {
     }
 }
 
-export { OptionType, ChartOptions, ChartOptionItem, OhlcData, VolumeData };
+
+class SeriesItem {
+    public name: string;
+    public type: string;
+    public index: number;
+    public period: number;
+    public yAxis: boolean;
+    public volume: boolean;
+    public standardDeviation?: number;
+    public volumeSeriesID?:string
+    constructor(_name: string, _type: string, _index: number, _period: number, _yAxis: boolean, _volume: boolean, _standardDeviation?: number,_volumeSeriesID?:string) {
+        this.name = _name;
+        this.type = _type;
+        this.index = _index;
+        this.period = _period;
+        this.yAxis = _yAxis;
+        this.volume = _volume;
+        this.standardDeviation = _standardDeviation;
+        this.volumeSeriesID = _volumeSeriesID;
+    }
+}
+
+class ChartItem {
+    public id: string;
+    public name: string;
+    constructor(_id: string, _name: string) {
+        this.id = _id;
+        this.name = _name;
+    }
+}
+
+
+export { OptionType, ChartOptions, ChartOptionItem, OhlcData, VolumeData, SeriesItem,ChartItem };

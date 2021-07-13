@@ -1,4 +1,4 @@
-import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData } from "../models/ChartModels";
+import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem } from "../models/ChartModels";
 
 
 class ChartsConfig {
@@ -15,7 +15,7 @@ class ChartsConfig {
             new ChartOptionItem(OptionType.shapeCircle, 'Circle', 'circle.svg'),
             new ChartOptionItem(OptionType.shapeRectangle, 'Rectangle', 'rectangle.svg'),
         ], 'Shapes'),
-      ]
+    ]
     public options: Array<ChartOptions> = [
         new ChartOptions('segment.svg', [
             new ChartOptionItem(OptionType.lineSegment, 'Segment', 'segment.svg'),
@@ -63,6 +63,11 @@ class ChartsConfig {
             new ChartOptionItem(OptionType.zoomXY, 'Zoom XY', 'zoom-xy.svg'),
         ]),
     ];
+
+    public static ohlcName: string = '价格';
+    public static volumeName: string = '成交量';
+    public static ohlcId: string = 'aapl-ohlc';
+    public static volumeId: string = 'aapl-volume';
 
     public static setChart = (ohlc: Array<OhlcData>, volume: Array<VolumeData>) => {
         return {
@@ -133,8 +138,8 @@ class ChartsConfig {
             },
             series: [{
                 type: 'ohlc',
-                id: 'aapl-ohlc',
-                name: 'AAPL Stock Price',
+                id: ChartsConfig.ohlcId,
+                name: ChartsConfig.ohlcName,
                 data: ohlc,
                 color: "#cf4e63",
                 upLineColor: '#227565', // docs
@@ -143,8 +148,8 @@ class ChartsConfig {
                 cropThreshold: 6000,
             }, {
                 type: 'column',
-                id: 'aapl-volume',
-                name: '成交量',
+                id: ChartsConfig.volumeId,
+                name: ChartsConfig.volumeName,
                 data: volume,
                 turboThreshold: 6000,
                 yAxis: 1
@@ -175,6 +180,17 @@ class ChartsConfig {
             resetZoom: '重置缩放'
         }
     }
+
+    public seriesTypes: Array<SeriesItem> = [
+        new SeriesItem('SMA', 'sma', 0, 14, false, false),
+        new SeriesItem('Accumulation/Distribution', 'ad', -1, 14, true, true,undefined,ChartsConfig.volumeId),
+        new SeriesItem('AO', 'ao', -1, -1, true, false),
+        new SeriesItem('Aroon', 'aroon', -1, 25, true, false),
+        new SeriesItem('Aroon Oscillator', 'sma', -1, 25, true, false),
+        new SeriesItem('ATR', 'atr', -1, 14, true, false),
+        new SeriesItem('BB', 'bb', 3, 20, false, false, 2),
+        new SeriesItem('CCI', 'cci', -1, 14, true, false),
+    ]
 }
 
 

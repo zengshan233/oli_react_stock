@@ -150,9 +150,9 @@ li.highcharts-active {
 .highcharts-popup.highcharts-annotation-toolbar {
   right: 10%;
   left: auto;
-  height: 40PX;
+  height: 40px;
   overflow: hidden;
-  padding-right: 40PX;
+  padding-right: 40px;
   width: auto;
   min-width: 0;
 }
@@ -164,7 +164,7 @@ li.highcharts-active {
 .highcharts-popup.highcharts-annotation-toolbar > span {
   display: block;
   float: left;
-  padding: 12PX;
+  padding: 12px;
 }
 
 .highcharts-popup {
@@ -178,8 +178,8 @@ li.highcharts-active {
   overflow-x: hidden;
   overflow-y: hidden;
   width: 75%;
-  min-width: 300PX;
-  max-width: 600PX;
+  min-width: 300px;
+  max-width: 600px;
   position: absolute;
   z-index: 100;
   -webkit-box-shadow: 0PX 0PX 8PX 0PX rgba(61, 61, 61, 0.3);
@@ -198,13 +198,13 @@ li.highcharts-active {
   clear: both;
   float: left;
   width: 100%;
-  margin-bottom: 10PX;
+  margin-bottom: 10px;
   box-sizing: border-box;
 }
 
 .highcharts-popup input {
-  border: 1PX solid #e6e6e6;
-  padding: 5PX;
+  border: 1px solid #e6e6e6;
+  padding: 5px;
   width: 100%;
 }
 
@@ -218,10 +218,10 @@ li.highcharts-active {
 .highcharts-popup-lhs-col.highcharts-popup-lhs-full {
   width: 100%;
   overflow-x: hidden;
-  height: calc(100% - 104PX);
+  height: calc(100% - 104px);
   border: none;
-  padding: 20PX;
-  padding-bottom: 10PX;
+  padding: 20px;
+  padding-bottom: 10px;
 }
 
 .highcharts-popup-lhs-col.highcharts-popup-lhs-full + .highcharts-popup-bottom-row {
@@ -230,22 +230,22 @@ li.highcharts-active {
 
 .highcharts-popup-lhs-col {
   clear: both;
-  width: 30%;
-  border-right: 1PX solid #e6e6e6;
+  width: 25%;
+  border-right: 1px solid #e6e6e6;
 }
 
 .highcharts-popup-bottom-row {
   float: left;
-  padding: 0PX 20PX;
-  padding-bottom: 12PX;
+  padding: 0px 20px;
+  padding-bottom: 12px;
   width: 100%;
-  border-top: 1PX solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
 }
 
 .highcharts-popup-rhs-col {
-  width: 70%;
-  height: calc(100% - 40PX);
-  padding: 20PX;
+  width: 75%;
+  height: calc(100% - 40px);
+  padding: 20px;
 }
 
 .highcharts-popup-rhs-col-wrapper {
@@ -262,17 +262,17 @@ li.highcharts-active {
 .highcharts-indicator-list {
   float: left;
   color: #666;
-  height: calc(100% - 70PX);
+  height: calc(100% - 100px);
   width: 100%;
   overflow-x: hidden;
-  margin: 0PX;
-  padding: 15PX 0PX;
+  margin: 0px;
+  padding: 15px 0px;
 }
 
 .highcharts-indicator-list li {
   cursor: pointer;
-  padding: 5PX 20PX;
-  margin: 0PX;
+  padding: 5px 20px;
+  margin: 0px;
   width: 100%;
   height: auto;
   overflow: hidden;
@@ -289,9 +289,9 @@ li.highcharts-active {
   cursor: pointer;
   display: block;
   float: left;
-  padding: 0PX 10PX;
-  height: 40PX;
-  line-height: 40PX;
+  padding: 0px 10px;
+  height: 40px;
+  line-height: 40px;
 }
 
 .highcharts-tab-item.highcharts-tab-item-active {
@@ -304,7 +304,7 @@ li.highcharts-active {
   height: 100%;
   overflow: hidden;
   width: 100%;
-  border-top: 1PX solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
 }
 
 .highcharts-tab-item-show {
@@ -314,11 +314,11 @@ li.highcharts-active {
 .highcharts-popup-close {
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 40PX;
-  height: 40PX;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   position: absolute;
-  padding: 10PX;
+  padding: 10px;
   top: 0%;
   right: 0%;
   color: #333333;
@@ -336,8 +336,8 @@ li.highcharts-active {
   border: none;
   background: #f7f7f7;
   color: #666;
-  margin-left: 5PX;
-  margin-top: 12PX;
+  margin-left: 5px;
+  margin-top: 12px;
 }
 
 .highcharts-popup button:first-child {
@@ -351,21 +351,21 @@ li.highcharts-active {
 /* annotation edit small popup */
 .highcharts-popup button.highcharts-annotation-edit-button,
 .highcharts-popup button.highcharts-annotation-remove-button {
-  width: 20PX;
-  height: 40PX;
-  padding: 20PX;
+  width: 20px;
+  height: 40px;
+  padding: 20px;
 }
 
 .highcharts-popup button.highcharts-annotation-edit-button {
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  text-indent: -9999PX;
+  text-indent: -9999px;
 }
 
 .highcharts-popup button.highcharts-annotation-remove-button {
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  text-indent: -9999PX;
+  text-indent: -9999px;
 }
 
 .highcharts-popup .highcharts-annotation-title {
@@ -373,14 +373,14 @@ li.highcharts-active {
   float: left;
   font-size: 1.2em;
   font-weight: bold;
-  margin-bottom: 15PX;
+  margin-bottom: 15px;
   width: 100%;
 }
 
 .highcharts-popup .highcharts-popup-main-title {
-  border-bottom: 1PX solid #e6e6e6;
-  margin: 0PX;
-  padding: 8PX 0PX 6PX 20PX;
+  border-bottom: 1px solid #e6e6e6;
+  margin: 0px;
+  padding: 8px 0px 6px 20px;
 }
 
 .highcharts-indicator-title {
@@ -431,3 +431,65 @@ li.highcharts-active {
   clear: both;
 }
 
+.highcharts-tracker-line{
+  stroke: #559de9;
+  stroke-width: 1;
+}
+
+.MuiPaper-root {
+  background-color: #303030!important;
+}
+.MuiFormLabel-root{
+  color: #fff!important;
+  font-size: 14PX!important;
+}
+
+.MuiButtonBase-root{
+  color:#fff!important;
+}
+.MuiSelect-root{
+  color:#fff!important;
+  font-size: 12PX!important;
+}
+.MuiInputBase-root{
+  line-height: 50px!important;
+}
+.MuiSelect-icon{
+  top:-30px!important;
+  width: 50px!important;
+  fill: #ffffff!important;
+}
+
+label + .MuiInput-formControl {
+  width: 250px!important;
+}
+.MuiInputBase-input{
+  padding: 0px 0 0px!important;
+  height: 50px!important;
+}
+.MuiInputBase-input{
+  border-bottom: 1px solid #ffffff!important;
+}
+.MuiInput-underline:after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  transform: scaleX(0);
+  transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid #ffffff!important;
+  pointer-events: none;
+}
+.MuiListItem-root{
+  font-size: 14PX!important;
+}
+
+.MuiInput-input{
+  font-size: 12PX!important;
+  color: #fff!important;
+}
+
+.MuiInputLabel-animated{
+  font-size: 10px!important;
+}

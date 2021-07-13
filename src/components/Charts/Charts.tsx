@@ -5,6 +5,9 @@ import './Chart.scss';
 import chartStoreContext from '../../stores/ChartStore';
 import ChartStore from '../../stores/ChartStore';
 
+import React from 'react';
+import { MenuBtn } from './Menu';
+
 
 export const Charts = observer(() => {
   const optionsConfig: ChartsConfig = new ChartsConfig();
@@ -28,7 +31,9 @@ export const Charts = observer(() => {
       </ul>
     </li>
   ));
-  optionList.push(<li className="more" onClick={() => { ChartStore.showMore() }}> <img src={require(`../../images/more.svg`).default}></img></li>);
+
+  optionList.push(<MenuBtn />);
+  // optionList.push(<li className="more" onClick={() => { ChartStore.showMore() }}> <img src={require(`../../images/more.svg`).default}></img></li>);
   optionList.push(<div className="clear"></div>);
   return (
     <div className="chart-wrapper">
