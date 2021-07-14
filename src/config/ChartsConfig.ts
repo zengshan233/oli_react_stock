@@ -3,21 +3,21 @@ import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, Series
 
 class ChartsConfig {
     public basicOptions: Array<ChartOptions> = [
-        new ChartOptions('fullscreen.svg', [], undefined, OptionType.full),
-        new ChartOptions('indicators.svg', [], 'Indicators', OptionType.indicators),
-        new ChartOptions('series-ohlc.svg', [
+        new ChartOptions(1, 'fullscreen.svg', [], undefined, OptionType.full),
+        new ChartOptions(2, 'indicators.svg', [], 'Indicators', OptionType.indicators),
+        new ChartOptions(3, 'series-ohlc.svg', [
             new ChartOptionItem(OptionType.seriesOhlc, 'OHLC', 'series-ohlc.svg'),
             new ChartOptionItem(OptionType.seriesLine, 'Line', 'series-line.svg'),
             new ChartOptionItem(OptionType.seriesCandlestick, 'Candlestick', 'series-candlestick.svg'),
         ], 'Series type'),
-        new ChartOptions('label.svg', [
+        new ChartOptions(4, 'label.svg', [
             new ChartOptionItem(OptionType.shapeLabel, 'Lable', 'label.svg'),
             new ChartOptionItem(OptionType.shapeCircle, 'Circle', 'circle.svg'),
             new ChartOptionItem(OptionType.shapeRectangle, 'Rectangle', 'rectangle.svg'),
         ], 'Shapes'),
     ]
     public options: Array<ChartOptions> = [
-        new ChartOptions('segment.svg', [
+        new ChartOptions(5, 'segment.svg', [
             new ChartOptionItem(OptionType.lineSegment, 'Segment', 'segment.svg'),
             new ChartOptionItem(OptionType.lineArrowSegment, 'Arrow Segment', 'arrow-segment.svg'),
             new ChartOptionItem(OptionType.lineRay, 'Ray', 'ray.svg'),
@@ -27,37 +27,37 @@ class ChartsConfig {
             new ChartOptionItem(OptionType.lineHorizontal, 'Horizontal', 'horizontal-line.svg'),
             new ChartOptionItem(OptionType.lineVertical, 'Vertical', 'vertical-line.svg'),
         ], 'Lines'),
-        new ChartOptions('elliott-3.svg', [
+        new ChartOptions(6, 'elliott-3.svg', [
             new ChartOptionItem(OptionType.elliott3, 'Elliott 3', 'elliott-3.svg'),
             new ChartOptionItem(OptionType.elliott5, 'Elliott 5', 'elliott-5.svg'),
             new ChartOptionItem(OptionType.crooked3, 'Crooked 3', 'crooked-3.svg'),
             new ChartOptionItem(OptionType.crooked5, 'Crooked 5', 'crooked-5.svg'),
         ], 'Crooked lines'),
-        new ChartOptions('measure-xy.svg', [
+        new ChartOptions(7, 'measure-xy.svg', [
             new ChartOptionItem(OptionType.measureXY, 'Measure XY', 'measure-xy.svg'),
             new ChartOptionItem(OptionType.measureX, 'Measure X', 'measure-x.svg'),
             new ChartOptionItem(OptionType.measureY, 'Measure Y', 'measure-y.svg'),
         ], 'Measure'),
-        new ChartOptions('fibonacci.svg', [
+        new ChartOptions(8, 'fibonacci.svg', [
             new ChartOptionItem(OptionType.fibonacci, 'Fibonacci', 'fibonacci.svg'),
             new ChartOptionItem(OptionType.pitchfork, 'Pitchfork', 'pitchfork.svg'),
             new ChartOptionItem(OptionType.parallel, 'Parallel', 'parallel-channel.svg'),
         ], 'Advanced'),
-        new ChartOptions('vertical-counter.svg', [
+        new ChartOptions(9, 'vertical-counter.svg', [
             new ChartOptionItem(OptionType.counter, 'Counter', 'vertical-counter.svg'),
             new ChartOptionItem(OptionType.counterLabel, 'Label', 'vertical-label.svg'),
             new ChartOptionItem(OptionType.counterArrow, 'Arrow', 'vertical-arrow.svg'),
         ], 'Counters'),
-        new ChartOptions('flag-elipse.svg', [
+        new ChartOptions(10, 'flag-elipse.svg', [
             new ChartOptionItem(OptionType.flagsCircle, 'Circle', 'flag-elipse.svg'),
             new ChartOptionItem(OptionType.flagsDiamond, 'Diamond', 'flag-diamond.svg'),
             new ChartOptionItem(OptionType.flagsSquare, 'Square', 'flag-trapeze.svg'),
             new ChartOptionItem(OptionType.flagsSimple, 'Simple', 'flag-basic.svg'),
         ], 'Flags'),
 
-        new ChartOptions('annotations-visible.svg', [], undefined, OptionType.toggle),
-        new ChartOptions('current-price-show.svg', [], undefined, OptionType.price),
-        new ChartOptions('zoom-x.svg', [
+        new ChartOptions(11, 'annotations-visible.svg', [], undefined, OptionType.toggle),
+        new ChartOptions(12, 'current-price-show.svg', [], undefined, OptionType.price),
+        new ChartOptions(13, 'zoom-x.svg', [
             new ChartOptionItem(OptionType.zoomX, 'Zoom X', 'zoom-x.svg'),
             new ChartOptionItem(OptionType.zoomY, 'Zoom Y', 'zoom-y.svg'),
             new ChartOptionItem(OptionType.zoomXY, 'Zoom XY', 'zoom-xy.svg'),
@@ -69,7 +69,7 @@ class ChartsConfig {
     public static ohlcId: string = 'aapl-ohlc';
     public static volumeId: string = 'aapl-volume';
 
-    public static setChart = (ohlc: Array<OhlcData>, volume: Array<VolumeData>) => {
+    public static setChart = (ohlc: Array<OhlcData>, volume: Array<VolumeData>, full: boolean) => {
         return {
             chart: {
                 events: {
@@ -85,21 +85,18 @@ class ChartsConfig {
 
             },
             scrollbar: {
-                enabled: false
+                enabled: full
             },
             navigator: {
-                enabled: false
+                enabled: full
             },
             rangeSelector: {
-                enabled: false,
+                enabled: full,
             },
 
             yAxis: [{
                 labels: {
                     align: 'left',
-                    // style: {
-                    //   "color": "#666666", "fontSize": "10px","textAlign":"left","x":-50
-                    // },
                 },
                 height: '70%',
                 gridLineColor: '#252525',
@@ -112,9 +109,6 @@ class ChartsConfig {
             }, {
                 labels: {
                     align: 'left',
-                    // style: {
-                    //   "color": "#666666", "fontSize": "10px"
-                    // }
                 },
                 top: '70%',
                 gridLineWidth: 0.5,
@@ -177,19 +171,20 @@ class ChartsConfig {
             months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
             weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
             shortWeekdays: ['七', '一', '二', '三', '四', '五', '六'],
-            resetZoom: '重置缩放'
+            resetZoom: '重置缩放',
+            rangeSelectorZoom: '范围选择'
         }
     }
 
     public seriesTypes: Array<SeriesItem> = [
         new SeriesItem('SMA', 'sma', 0, 14, false, false),
-        new SeriesItem('Accumulation/Distribution', 'ad', -1, 14, true, true,undefined,ChartsConfig.volumeId),
-        new SeriesItem('AO', 'ao', -1, -1, true, false),
-        new SeriesItem('Aroon', 'aroon', -1, 25, true, false),
-        new SeriesItem('Aroon Oscillator', 'sma', -1, 25, true, false),
-        new SeriesItem('ATR', 'atr', -1, 14, true, false),
         new SeriesItem('BB', 'bb', 3, 20, false, false, 2),
-        new SeriesItem('CCI', 'cci', -1, 14, true, false),
+        // new SeriesItem('Accumulation/Distribution', 'ad', -1, 14, true, true,undefined,ChartsConfig.volumeId),
+        // new SeriesItem('AO', 'ao', -1, -1, true, false),
+        // new SeriesItem('Aroon', 'aroon', -1, 25, true, false),
+        // new SeriesItem('Aroon Oscillator', 'sma', -1, 25, true, false),
+        // new SeriesItem('ATR', 'atr', -1, 14, true, false),
+        // new SeriesItem('CCI', 'cci', -1, 14, true, false),
     ]
 }
 

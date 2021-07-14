@@ -1,0 +1,23 @@
+.tabs {
+    display: flex;
+    height: 80px;
+    justify-content: space-around;
+    margin-top: 20px;
+    border-top: 1px solid #282828;
+    border-bottom: 1px solid #282828;
+    .tab {
+        height: 60px;
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 5px;
+        }
+        .line {
+            width: 100px;
+            height: 4px;
+            background-color: #559de9;
+        }
+    }
+}

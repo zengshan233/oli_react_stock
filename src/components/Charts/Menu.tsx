@@ -40,9 +40,9 @@ export const MenuBtn = observer(() => {
 
     let seriesTypes: Array<SeriesItem> = new ChartsConfig().seriesTypes;
     return (
-        <div>
+        <li className="Indicators">
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                <img className={styles.img} src={require(`../../images/more.svg`).default} />
+                <img className={styles.img} src={require(`../../images/indicators.svg`).default} />
             </Button>
             <Menu
                 className={styles.menu}
@@ -53,8 +53,8 @@ export const MenuBtn = observer(() => {
                 onClose={handleClose}
             >
                 <div className={styles.seriesMenu}>
-                    {seriesTypes.map((item) => (
-                        <MenuItem className={styles.seriesType} onClick={() => { ChartStore.setSeriesItem(item) }}>{item.name}</MenuItem>
+                    {seriesTypes.map((item,idx) => (
+                        <MenuItem key={idx} className={styles.seriesType} onClick={() => { ChartStore.setSeriesItem(item) }}>{item.name}</MenuItem>
                     ))}
 
                 </div>
@@ -69,8 +69,8 @@ export const MenuBtn = observer(() => {
                             value={ChartStore.seriesChartId}
                             onChange={handleChange}
                         >
-                            {seriesCharts.map((chart) => (
-                                <MenuItem value={chart.id}>{chart.name}</MenuItem>
+                            {seriesCharts.map((chart,idx) => (
+                                <MenuItem key={idx} value={chart.id}>{chart.name}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
@@ -97,6 +97,6 @@ export const MenuBtn = observer(() => {
 
                 <div className={styles.clear}></div>
             </Menu>
-        </div >
+        </li >
     );
 })

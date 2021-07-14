@@ -44,11 +44,13 @@ enum OptionType {
 
 
 class ChartOptions {
+    public id: number;
     public lable?: string;
     public icon: string;
     public options: Array<ChartOptionItem>;
     public type?: OptionType;
-    constructor(_icon: string, _options: Array<ChartOptionItem>, _lable?: string, _type?: OptionType) {
+    constructor(_id:number,_icon: string, _options: Array<ChartOptionItem>, _lable?: string, _type?: OptionType) {
+        this.id = _id;
         this.type = _type;
         this.lable = _lable;
         this.icon = _icon;

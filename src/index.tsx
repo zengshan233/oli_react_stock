@@ -1,22 +1,23 @@
 import ReactDOM from 'react-dom';
 import './scss/index.scss';
-import App from './components/App';
+import Stock from './components/Stock/Stock';
 import reportWebVitals from './reportWebVitals';
 import { Router, Route, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
 import 'lib-flexible';
+import { FullScreenCharts } from './components/Charts/FullScreenChart';
+import Test from './components/Test';
 
 const browserHistory = createBrowserHistory();
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-      <Switch>
-        <Route
-          path="/"
-          component={App}
-        />
-      </Switch>
-    </Router>,
+  <Router history={browserHistory}>
+    <Switch>
+      <Route path="/" component={Stock} exact={true}/>
+      <Route path="/fullScreenChart" component={FullScreenCharts} />
+      <Route path="/test" component={Test} />
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 

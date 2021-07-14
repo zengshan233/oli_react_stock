@@ -1,0 +1,108 @@
+.search-wrapper {
+    display: flex;
+    align-items: flex-end;
+    height: 150px;
+    justify-content: space-between;
+    background-color: #282828;
+    padding-bottom: 20px;
+    .icon {
+        width: 60px;
+        height: 60px;
+        margin-left: 30px;
+        background-color: red;
+    }
+    .MuiPaper-root {
+        display: flex;
+        width: 620px;
+        height: 60px;
+        margin-right: 20px;
+        background-color: #3b3b3b !important;
+        align-items: center;
+        justify-content: space-around;
+        .MuiIconButton-root {
+            font-size: 14px;
+            padding: 12px;
+        }
+        .MuiInputBase-input {
+            font-size: 14px;
+            color: #fff;
+            border: none !important;
+        }
+        img {
+            display: block;
+            width: 30px;
+            height: 30px;
+        }
+        .search {
+            width: 25px;
+            height: 25px;
+        }
+        .close {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 700px;
+    height: 80px;
+    margin: 0 auto;
+    .icon {
+        width: 80px;
+        height: 80px;
+        background-color: red;
+    }
+    .stock-info {
+        width: 580px;
+        height: 80px;
+        .top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            line-height: 30px;
+            margin-bottom: 15px;
+            .title-info {
+                display: flex;
+                .title {
+                    color: #fff;
+                    font-size: 16px;
+                    margin-right: 20px;
+                }
+                .subtitle {
+                    color: #9d9d9d;
+                    display: table-cell;
+                    vertical-align: bottom;
+                    font-size: 12px;
+                    padding-top: 5px;
+                }
+            }
+            .data {
+                color: #69ddcc;
+                font-size: 14px;
+                display: table-cell;
+                vertical-align: bottom;
+            }
+        }
+        .bottom-info {
+            display: flex;
+            justify-content: space-between;
+            .abstract {
+                color: #9d9d9d;
+                font-size: 12px;
+            }
+            .follow {
+                width: 30px;
+                height: 30px;
+                display: block;
+                margin-top: 3px;
+            }
+        }
+    }
+}

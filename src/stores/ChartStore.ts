@@ -1,27 +1,36 @@
 import { makeAutoObservable, } from "mobx";
 import ChartsConfig from "../config/ChartsConfig";
-import { ChartItem, OhlcData, SeriesItem, VolumeData } from "../models/ChartModels";
+import { OhlcData, SeriesItem, VolumeData } from "../models/ChartModels";
 
 class ChartStore {
 
   moreOptions: boolean = false;
   chart: any;
-
   seriesItem: SeriesItem;
   seriesChartId: string;
   seriesIndex: number;
   seriesPeriod: number;
+  iconMap: any = {};
+  currentOptionId?: number;
 
   constructor() {
+
     makeAutoObservable(this);
-    let initSeriesItem = new ChartsConfig().seriesTypes[0];
+    let chartConfig = new ChartsConfig();
+    let initSeriesItem = chartConfig.seriesTypes[0];
     this.seriesItem = initSeriesItem;
     this.seriesChartId = ChartsConfig.ohlcId;
     this.seriesIndex = initSeriesItem.index;
     this.seriesPeriod = initSeriesItem.period;
+    chartConfig.basicOptions.forEach((o) => {
+      this.iconMap[o.id] = o.icon;
+    })
+    chartConfig.options.forEach((o) => {
+      this.iconMap[o.id] = o.icon;
+    })
   }
 
-  public paintChart() {
+  public paintChart(full:boolean) {
     let _self = this;
     var Highcharts: any = (window as any).Highcharts;
     Highcharts.getJSON('http://oliquantdemo-env.eba-fepvtuwm.ap-southeast-2.elasticbeanstalk.com/prices?symbol=8CO_ASX', function (data: any) {
@@ -39,7 +48,7 @@ class ChartStore {
       }
       ohlc.sort((a, b) => a.x - b.x);
       volume.sort((a, b) => a.x - b.x);
-      _self.chart = Highcharts.stockChart('container', ChartsConfig.setChart(ohlc, volume));
+      _self.chart = Highcharts.stockChart('container', ChartsConfig.setChart(ohlc, volume,full));
       Highcharts.setOptions(ChartsConfig.langOptions);
       Highcharts.dateFormat();
 
@@ -52,6 +61,14 @@ class ChartStore {
 
   setChartId(id: string) {
     this.seriesChartId = id;
+  }
+
+  setCurrentOption(id: number) {
+    if (this.currentOptionId == id) {
+      this.currentOptionId = 0
+      return;
+    }
+    this.currentOptionId = id;
   }
 
   setSeriesItem(item: SeriesItem) {
@@ -80,14 +97,19 @@ class ChartStore {
     if (this.seriesPeriod >= 0) {
       series.params.period = this.seriesPeriod;
     }
-    if(this.seriesItem.volumeSeriesID){
-     series.params.volumeSeriesID=this.seriesItem.volumeSeriesID;
+    if (this.seriesItem.volumeSeriesID) {
+      series.params.volumeSeriesID = this.seriesItem.volumeSeriesID;
     }
-    if(this.seriesItem.standardDeviation){
+    if (this.seriesItem.standardDeviation) {
       series.params.standardDeviation = this.seriesItem.standardDeviation;
     }
-    console.log('series', series)
     this.chart.addSeries(series)
+  }
+
+  onTypePicked(id: number, icon: string) {
+    let iconMap = this.iconMap;
+    iconMap[id] = icon;
+    this.iconMap = iconMap;
   }
 }
 
