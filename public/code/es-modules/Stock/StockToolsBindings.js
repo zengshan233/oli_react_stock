@@ -583,6 +583,7 @@ var stockToolsBindings = {
                         }]
                 }
             }, navigation.annotationsOptions, navigation.bindings.segment.annotationsOptions);
+            console.log("optionsoptions1",options)
             return this.chart.addAnnotation(options);
         },
         /** @ignore-option */

@@ -127,7 +127,25 @@ class ChartStore {
         if (this.seriesItem.standardDeviation) {
             series.params.standardDeviation = this.seriesItem.standardDeviation;
         }
-        this.chart.addSeries(series)
+        // this.chart.addSeries(series)
+        var navigation = this.chart.options.navigation;
+        var options = Highcharts.merge({
+            langKey: 'segment',
+            type: 'crookedLine',
+            typeOptions: {
+                xAxis: 0,
+                yAxis: 0,
+                points: [{
+                    x: 1573311808494.9053,
+                    y: 66.13924050632912
+                }, {
+                    x: 1597963329732.169,
+                    y: 50.56962025316456
+                }]
+            }
+        }, navigation.annotationsOptions, navigation.bindings.segment.annotationsOptions);
+        console.log("options  ", options)
+       this.chart.addAnnotation(options);
     }
 
     onTypePicked(id: number, icon: string) {

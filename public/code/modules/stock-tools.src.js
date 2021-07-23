@@ -5676,7 +5676,8 @@
                                 }]
                         }
                     }, navigation.annotationsOptions, navigation.bindings.segment.annotationsOptions);
-                    return this.chart.addAnnotation(options);
+            console.log("optionsoption2",options)
+            return this.chart.addAnnotation(options);
                 },
                 /** @ignore-option */
                 steps: [

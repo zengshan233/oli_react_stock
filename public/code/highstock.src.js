@@ -31591,7 +31591,7 @@
              * @fires Highcharts.Chart#event:afterAddSeries
              */
             Chart.prototype.addSeries = function (options, redraw, animation) {
-                var chart = this;
+                        var chart = this;
                 var series;
                 if (options) { // <- not necessary
                     redraw = pick(redraw, true); // defaults to true
@@ -31603,6 +31603,7 @@
                             // We need to call `setData` after `linkSeries`
                             series.setData(options.data, false);
                         }
+                        console.log("series ",series)
                         fireEvent(chart, 'afterAddSeries', { series: series });
                         if (redraw) {
                             chart.redraw(animation);

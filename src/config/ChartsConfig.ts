@@ -123,13 +123,47 @@ class ChartsConfig {
                 tickColor: '#929292',
                 tickLength: 4,
                 tickWidth: 1,
-                lineColor: "#757576"
+                lineColor: "#757576",
             }],
             stockTools: {
                 gui: {
                     enabled: true
                 }
             },
+            tooltip: {
+                shape: 'square',
+                headerShape: 'callout',
+                borderWidth: 0,
+                shadow: false,
+                positioner:  (width:any, height:any, point:any) =>{
+        var Highcharts: any = (window as any).Highcharts;
+        var chart = Highcharts,
+                        position;
+    
+                    if (point.isHeader) {
+                        position = {
+                            x: Math.max(
+                                // Left side limit
+                                chart.plotLeft,
+                                Math.min(
+                                    point.plotX + chart.plotLeft - width / 2,
+                                    // Right side limit
+                                    chart.chartWidth - width - chart.marginRight
+                                )
+                            ),
+                            y: point.plotY
+                        };
+                    } else {
+                        position = {
+                            x: point.series.chart.plotLeft,
+                            y: point.series.yAxis.top - chart.plotTop
+                        };
+                    }
+    
+                    return position;
+                }
+            },
+            
             series: [{
                 type: 'ohlc',
                 id: ChartsConfig.ohlcId,
