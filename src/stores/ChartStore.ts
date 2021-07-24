@@ -129,7 +129,7 @@ class ChartStore {
         }
         // this.chart.addSeries(series)
         var navigation = this.chart.options.navigation;
-        var options = Highcharts.merge({
+        var options1 = Highcharts.merge({
             langKey: 'segment',
             type: 'crookedLine',
             typeOptions: {
@@ -144,8 +144,23 @@ class ChartStore {
                 }]
             }
         }, navigation.annotationsOptions, navigation.bindings.segment.annotationsOptions);
-        console.log("options  ", options)
+        var options = Highcharts.merge({
+            langKey: 'segment',
+            type: 'crookedLine',
+            typeOptions: {
+                xAxis: 0,
+                yAxis: 0,
+                points: [{
+                    x: 1573311808494.9053,
+                    y: 40.13924050632912
+                }, {
+                    x: 1597963329732.169,
+                    y: 100.56962025316456
+                }]
+            }
+        }, navigation.annotationsOptions, navigation.bindings.segment.annotationsOptions);
        this.chart.addAnnotation(options);
+       this.chart.addAnnotation(options1);
     }
 
     onTypePicked(id: number, icon: string) {
