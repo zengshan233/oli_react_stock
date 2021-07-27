@@ -1,4 +1,4 @@
-import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem } from "../models/ChartModels";
+import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem, StatisticData } from "../models/ChartModels";
 
 
 class ChartsConfig {
@@ -74,7 +74,6 @@ class ChartsConfig {
             chart: {
                 events: {
                     load: function () {
-                        // addPopupEvents(this);
                     }
                 },
                 zoomType: 'x',
@@ -130,40 +129,40 @@ class ChartsConfig {
                     enabled: true
                 }
             },
-            tooltip: {
-                shape: 'square',
-                headerShape: 'callout',
-                borderWidth: 0,
-                shadow: false,
-                positioner:  (width:any, height:any, point:any) =>{
-        var Highcharts: any = (window as any).Highcharts;
-        var chart = Highcharts,
-                        position;
-    
-                    if (point.isHeader) {
-                        position = {
-                            x: Math.max(
-                                // Left side limit
-                                chart.plotLeft,
-                                Math.min(
-                                    point.plotX + chart.plotLeft - width / 2,
-                                    // Right side limit
-                                    chart.chartWidth - width - chart.marginRight
-                                )
-                            ),
-                            y: point.plotY
-                        };
-                    } else {
-                        position = {
-                            x: point.series.chart.plotLeft,
-                            y: point.series.yAxis.top - chart.plotTop
-                        };
-                    }
-    
-                    return position;
-                }
-            },
-            
+
+            // tooltip: {
+            //     shape: 'square',
+            //     headerShape: 'callout',
+            //     borderWidth: 0,
+            //     shadow: false,
+            //     positioner: (width: any, height: any, point: any) => {
+            //         var Highcharts: any = (window as any).Highcharts;
+            //         var chart = Highcharts,
+            //             position;
+            //         if (point.isHeader) {
+            //             position = {
+            //                 x: Math.max(
+            //                     // Left side limit
+            //                     chart.plotLeft,
+            //                     Math.min(
+            //                         point.plotX + chart.plotLeft - width / 2,
+            //                         // Right side limit
+            //                         chart.chartWidth - width - chart.marginRight
+            //                     )
+            //                 ),
+            //                 y: point.plotY
+            //             };
+            //         } else {
+            //             position = {
+            //                 x: point.series.chart.plotLeft,
+            //                 y: point.series.yAxis.top - chart.plotTop
+            //             };
+            //         }
+
+            //         return position;
+            //     }
+            // },
+
             series: [{
                 type: 'ohlc',
                 id: ChartsConfig.ohlcId,
@@ -199,6 +198,74 @@ class ChartsConfig {
         };
     }
 
+    public static setStatisticChart = (data1: Array<StatisticData>, data2: Array<StatisticData>) => {
+        return {
+            chart: {
+                events: {
+                    load: function () {
+                    }
+                },
+                zoomType: 'x',
+                backgroundColor: "#000000",
+                plotBackgroundColor: 0,
+                spacing: [5, 0, 5, 5]
+
+            },
+            scrollbar: {
+                enabled: false
+            },
+            navigator: {
+                enabled: false
+            },
+            rangeSelector: {
+                enabled: false,
+            },
+
+            yAxis: [{
+                labels: {
+                    align: 'right',
+                },
+                gridLineColor: '#151515 ',
+                gridLineWidth: 0.5,
+                endOnTick: true,
+                tickAmount: 7,
+                opposite: false,
+                resize: {
+                    enabled: true
+                }
+            }],
+            xAxis: [{
+                startOnTick:true,
+                tickAmount: 6,
+                tickColor: '#342619',
+                tickLength: 6,
+                tickWidth: 2,
+                lineColor: "#110d08",
+            }],
+            stockTools: {
+                gui: {
+                    enabled: true
+                }
+            },
+            series: [{
+                type: 'line',
+                name: '总资产',
+                data: data1,
+                color: "#a86c24",
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }, {
+                type: 'line',
+                name: '总负债',
+                color: "#2476a8",
+                data: data2,
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }],
+        };
+    }
 
     public static langOptions: object = {
         lang: {

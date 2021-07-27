@@ -1,40 +1,46 @@
 
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import './Info.scss';
+import './Statistic.scss';
 
 const tabs: Array<any> = [
-    { icon: 'statistic.svg', iconOff: 'statistic_off.svg', key: 1, link: '/' },
-    { icon: 'statistic.svg', iconOff: 'statistic_off.svg', key: 2, link: '/data' },
-    { icon: 'statistic.svg', iconOff: 'statistic_off.svg', key: 3, link: '/' },
+    { text: '收入', key: 1 },
+    { text: '资产', key: 2 },
+    { text: '现金流', key: 3 },
 ];
 
-export default function Info() {
+interface StatisticTabProps{
+    onChanged?:Function
+}
+
+export default function StatisticTabs(props:StatisticTabProps) {
     let history = useHistory();
     const [checkedTab, changeTab] = useState(1);
     const [checkedPosition, changePosition] = useState('0');
     let onChange = (key: number, index: number) => {
         changeTab(key);
         changePosition(((100 / tabs.length) * index) + '%');
+        props?.onChanged &&   props?.onChanged(key);
     };
     return (
-        <div className="tabWrapper">
+        <div className="statisticTabWrapper">
             <div className="taberContainer">
-                <div className="taber">
-                    {tabs.map((t, i) => {
-                        return <div className="tabItem" onClick={() => {
-                            history.push(t.link);
-                            onChange(t.key, i);
-                            return;
-                        }}>
-                            <img src={require(`../../images/${checkedTab == t.key ? t.icon : t.iconOff}`).default}></img>
-                        </div>
-                    })}
-                </div>
                 <div className="tabBar" style={{
+                    width: (100 / tabs.length) + '%',
                     left: checkedPosition
                 }}
                 ></div>
+                <div className="taber">
+                    {tabs.map((t, i) => {
+                        return <div className={checkedTab === t.key ? 'tabItemChecked' : 'tabItem'} onClick={() => {
+                            onChange(t.key, i);
+                            return;
+                        }}>
+                            {t.text}
+                        </div>
+                    })}
+                </div>
+
             </div>
         </div>
     );

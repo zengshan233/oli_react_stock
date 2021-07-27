@@ -11,21 +11,25 @@ export const Charts = observer(() => {
   useEffect(() => {
     ChartStore.paintChart(false);
   }, []);
-
+  console.log("ChartStore", ChartStore);
+  if (!ChartStore) {
+    return (<div></div>);
+  }
   let history = useHistory();
   let optionList = optionsConfig.basicOptions.map((tab, idx) => {
     if (idx == 1) {
-      return <MenuBtn key={idx}/>
+      return <MenuBtn key={idx} />
     }
+    let icon = ChartStore.iconMap[tab.id];
     return (
-      <li key={idx}   onClick={() => {
-        if(idx == 0){
+      <li key={idx} onClick={() => {
+        if (idx == 0) {
           history.push('/fullScreenChart');
-          return ;
+          return;
         }
         ChartStore.setCurrentOption(tab.id)
       }} title="Simple shapes">
-        <img className="highcharts-menu-item-btn" src={require(`../../images/${ChartStore.iconMap[tab.id]}`).default}></img>
+        <img className="highcharts-menu-item-btn" src={require(`../../images/${icon}`).default}></img>
         {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
         {ChartStore.currentOptionId == tab.id && <ul id={`optionMenu${tab.id}`}>
           {tab.options.map((option, i) => (
@@ -40,7 +44,7 @@ export const Charts = observer(() => {
       </li>
     );
   });
-  optionList.push(<li key='more'  className="more" onClick={() => { ChartStore.showMore() }}> <img src={require(`../../images/more.svg`).default}></img></li>);
+  optionList.push(<li key='more' className="more" onClick={() => { ChartStore.showMore() }}> <img src={require(`../../images/more.svg`).default}></img></li>);
   optionList.push(<div key='clear' className="clear"></div>);
   return (
     <div className="chart-wrapper">
@@ -50,24 +54,27 @@ export const Charts = observer(() => {
             {optionList}
           </ul>
           {ChartStore.moreOptions && <ul className="highcharts-stocktools-toolbar stocktools-toolbar">
-            {optionsConfig.options.map((tab, idx) => (
-              <li key={idx} onClick={() => {
-                ChartStore.setCurrentOption(tab.id)
-              }} title="Simple shapes">
-                <img className="highcharts-menu-item-btn" src={require(`../../images/${ChartStore.iconMap[tab.id]}`).default}></img>
-                {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
-                {ChartStore.currentOptionId == tab.id && <ul>
-                  {tab.options.map((option, i) => (
-                    <li key={i} className={option.type} title={option.lable} onClick={(e) => {
-                      ChartStore.onTypePicked(tab.id, option.icon);
-                    }}  >
-                      <img className="highcharts-menu-item-btn" src={require(`../../images/${option.icon}`).default}></img>
-                      <span className="highcharts-menu-item-title">{option.lable}</span>
-                    </li>
-                  ))}
-                </ul>}
-              </li>
-            ))}
+            {optionsConfig.options.map((tab, idx) => {
+              let icon = ChartStore.iconMap[tab.id];
+              return (
+                <li key={idx} onClick={() => {
+                  ChartStore.setCurrentOption(tab.id)
+                }} title="Simple shapes">
+                  <img className="highcharts-menu-item-btn" src={require(`../../images/${icon}`).default}></img>
+                  {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
+                  {ChartStore.currentOptionId == tab.id && <ul>
+                    {tab.options.map((option, i) => (
+                      <li key={i} className={option.type} title={option.lable} onClick={(e) => {
+                        ChartStore.onTypePicked(tab.id, option.icon);
+                      }}  >
+                        <img className="highcharts-menu-item-btn" src={require(`../../images/${option.icon}`).default}></img>
+                        <span className="highcharts-menu-item-title">{option.lable}</span>
+                      </li>
+                    ))}
+                  </ul>}
+                </li>
+              );
+            })}
           </ul>}
         </div>
       </div>

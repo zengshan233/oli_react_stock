@@ -1,0 +1,100 @@
+.statisticWrapper {
+    margin-top: 40px;
+    padding-bottom: 50px;
+    .statisticTabWrapper {
+        background-color: #1a1a1a;
+        width: 600px;
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+        height: 60px;
+        .taberContainer {
+            position: relative;
+            box-sizing: border-box;
+            .taber {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                box-sizing: border-box;
+                .tabItem,
+                .tabItemChecked {
+                    box-sizing: border-box;
+                    line-height: 60px;
+                    font-size: 28px;
+                    font-weight: 400;
+                    color: #a0a0a0;
+                    text-align: center;
+                    width: 33.33%;
+                    cursor: pointer;
+                }
+                .tabItemChecked {
+                    color: #aaaaaa;
+                }
+            }
+
+            .tabBar {
+                position: absolute;
+                border-radius: 15px;
+                height: 60px;
+                box-sizing: border-box;
+                background-color: #494949;
+                border: 1px #494949 solid;
+                transition: top 0.3s cubic-bezier(0.35, 0, 0.25, 1), left 0.3s cubic-bezier(0.35, 0, 0.25, 1),
+                    color 0.3s cubic-bezier(0.35, 0, 0.25, 1), width 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+            }
+        }
+    }
+    .chartWraper {
+        margin: 50px 45px 10px 45px;
+        #statisticChart {
+            margin: 0;
+            height: 400px;
+            width: 500px;
+            float: left;
+        }
+        .statisInfo {
+            float: right;
+            .content{
+                margin-bottom: 35px;
+                color: #a6a6a6;
+                font-size: 18px;
+                text-align: right;
+                .value{
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
+            .content:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+    .tipsWrapper{
+        width: 500px;
+        margin:0 auto;
+        display: flex;
+        .tips{
+            width: 220px;
+            display: flex;
+            align-items: center;
+            .line1,.line2{
+                width: 30px;
+                height: 15px;
+            }
+            .line1{
+                background-color: #a86c24;
+            }
+            .line2{
+                background-color: #2476a8;
+            }
+            .tipsInfo{
+                margin-left: 20px;
+                color: #afafaf;
+                font-size: 18px;
+            }
+        }
+    }
+}

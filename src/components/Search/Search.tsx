@@ -4,9 +4,8 @@ import './Search.scss';
 
 export default function Search() {
     return (
-        <div>
-
-            <div className='search-wrapper'>
+        <div className="topWrapper">
+            {/* <div className='search-wrapper'>
                 <div className="icon"></div>
                 <Paper component="form" >
                     <img className='search' src={require(`../../images/search.svg`).default}></img>
@@ -16,7 +15,7 @@ export default function Search() {
                     />
                     <img className="close" src={require(`../../images/close.svg`).default}></img>
                 </Paper>
-            </div>
+            </div> */}
 
             <div className="info">
                 <div className="icon"></div>
@@ -27,9 +26,16 @@ export default function Search() {
                     </div>
                     <div className='bottom-info'>
                         <div className="abstract">BRIDGELINE DIGITAL,INC</div>
-                        <img className="follow" src={require(`../../images/close.svg`).default}></img>
+                        <img className="follow" src={require(`../../images/add.svg`).default}></img>
                     </div>
                 </div>
+            </div>
+
+            <div className="introduce">
+                BBIN公司从20/11/2020结束的财政年度开始：收入上升了73.13%；净收入上升了332.34%；净资产上升了18.97%。
+            </div>
+            <div className="introduce">
+                
             </div>
         </div>
     );

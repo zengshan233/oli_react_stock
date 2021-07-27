@@ -49,7 +49,7 @@ class ChartOptions {
     public icon: string;
     public options: Array<ChartOptionItem>;
     public type?: OptionType;
-    constructor(_id:number,_icon: string, _options: Array<ChartOptionItem>, _lable?: string, _type?: OptionType) {
+    constructor(_id: number, _icon: string, _options: Array<ChartOptionItem>, _lable?: string, _type?: OptionType) {
         this.id = _id;
         this.type = _type;
         this.lable = _lable;
@@ -84,6 +84,15 @@ class OhlcData {
     }
 }
 
+class StatisticData {
+    public date: number;
+    public value: number;
+    constructor(_date: number, _value: number,) {
+        this.date = _date;
+        this.value = _value;
+    }
+}
+
 class VolumeData {
     public x: number;
     public y: number;
@@ -104,8 +113,8 @@ class SeriesItem {
     public yAxis: boolean;
     public volume: boolean;
     public standardDeviation?: number;
-    public volumeSeriesID?:string
-    constructor(_name: string, _type: string, _index: number, _period: number, _yAxis: boolean, _volume: boolean, _standardDeviation?: number,_volumeSeriesID?:string) {
+    public volumeSeriesID?: string
+    constructor(_name: string, _type: string, _index: number, _period: number, _yAxis: boolean, _volume: boolean, _standardDeviation?: number, _volumeSeriesID?: string) {
         this.name = _name;
         this.type = _type;
         this.index = _index;
@@ -127,4 +136,4 @@ class ChartItem {
 }
 
 
-export { OptionType, ChartOptions, ChartOptionItem, OhlcData, VolumeData, SeriesItem,ChartItem };
+export { OptionType, ChartOptions, ChartOptionItem, OhlcData, VolumeData, SeriesItem, ChartItem ,StatisticData};

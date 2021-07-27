@@ -424,9 +424,12 @@
   clear: both;
 }
 
-.highcharts-tracker-line {
-  stroke: #559de9;
-  stroke-width: 1;
+.chart-wrapper{
+  .highcharts-tracker-line {
+    stroke: #559de9;
+    stroke-width: 1;
+  }
+  
 }
 
 .MuiPaper-root {

@@ -6,8 +6,13 @@ import { useHistory } from "react-router-dom";
 
 import './Chart.scss';
 import { MenuBtn } from './Menu';
+import { RouteConfigComponentProps } from 'react-router-config';
+    
+interface FullScreenProps extends RouteConfigComponentProps {
+    routes?: any;
+}
 
-export const FullScreenCharts = observer(() => {
+export const FullScreenCharts = observer((props:FullScreenProps) => {
     const optionsConfig: ChartsConfig = new ChartsConfig();
 
     let history = useHistory();
@@ -21,13 +26,13 @@ export const FullScreenCharts = observer(() => {
                 <div className="highcharts-menu-wrapper">
                     <ul className="highcharts-stocktools-toolbar stocktools-toolbar">
                         {optionList.map((tab, idx) => {
-                            if (idx == 1) {
+                            if (idx === 1) {
                                 return <MenuBtn key={idx} />
                             }
                             return (
 
                                 <li key={idx} onClick={() => {
-                                    if (idx == 0) {
+                                    if (idx === 0) {
                                         history.goBack();
                                         return;
                                     }
@@ -35,7 +40,7 @@ export const FullScreenCharts = observer(() => {
                                 }} title="Simple shapes">
                                     <img className="highcharts-menu-item-btn" src={require(`../../images/${ChartStore.iconMap[tab.id]}`).default}></img>
                                     {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
-                                    {ChartStore.currentOptionId == tab.id && <ul>
+                                    {ChartStore.currentOptionId === tab.id && <ul>
                                         {tab.options.map((option, i) => (
                                             <li key={i} className={option.type} title={option.lable} onClick={(e) => {
                                                 ChartStore.onTypePicked(tab.id, option.icon);
