@@ -34,28 +34,28 @@ class ChartStore {
     public async paintChart(full: boolean) {
         let _self = this;
         var Highcharts: any = (window as any).Highcharts;
-        let data: any = await new Ajax('https://demo-live-data.highcharts.com/aapl-ohlcv.json').get();
+        let data: any = await new Ajax('http://oliapi-env.eba-z24vycvy.ap-southeast-2.elasticbeanstalk.com/prices?symbol=bhp_asx').get();
 
         let ohlc: Array<OhlcData> = [],
             volume: Array<VolumeData> = [];
         for (var i in data) {
-            ohlc.push(new OhlcData(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
-            volume.push(
-                new VolumeData(
-                    data[i][0],
-                    data[i][5],
-                    data[i][1] <= data[i][4] ? "#227565" : "#cf4e63"
-                )
-            );
-
-            // ohlc.push(new OhlcData(data[i].time, data[i].open, data[i].high, data[i].low, data[i].close))
+            // ohlc.push(new OhlcData(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
             // volume.push(
-            //   new VolumeData(
-            //     data[i].time,
-            //     data[i].volume,
-            //     data[i].open <= data[i].close ? "#227565" : "#cf4e63"
-            //   )
+            //     new VolumeData(
+            //         data[i][0],
+            //         data[i][5],
+            //         data[i][1] <= data[i][4] ? "#227565" : "#cf4e63"
+            //     )
             // );
+
+            ohlc.push(new OhlcData(data[i].time, data[i].open, data[i].high, data[i].low, data[i].close))
+            volume.push(
+              new VolumeData(
+                data[i].time,
+                data[i].volume,
+                data[i].open <= data[i].close ? "#227565" : "#cf4e63"
+              )
+            );
         }
 
 

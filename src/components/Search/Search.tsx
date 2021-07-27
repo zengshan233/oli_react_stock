@@ -18,7 +18,7 @@ export default function Search() {
             </div> */}
 
             <div className="info">
-                <div className="icon"></div>
+                <div className="icon">B</div>
                 <div className="stock-info">
                     <div className='top-info'>
                         <div className="title-info"><div className="title">BLIN</div> <div className="subtitle">NASDAQ</div></div>

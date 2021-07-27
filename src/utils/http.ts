@@ -50,16 +50,16 @@ export class Ajax<T>{
         try {
             switch (type) {
                 case RequestType.get:
-                    response = await axios.get(`${this.url}?${this.paramsPostBody(this.data)}`, requestConfig);
+                    response = await axios.get(`${this.url}${this.paramsPostBody(this.data,true)}`, requestConfig);
                     break;
                 case RequestType.post:
-                    response = await axios.post(this.url, this.paramsPostBody(this.data), requestConfig);
+                    response = await axios.post(this.url, this.paramsPostBody(this.data,false), requestConfig);
                     break;
                 case RequestType.put:
-                    response = await axios.put(this.url, this.paramsPostBody(this.data), requestConfig);
+                    response = await axios.put(this.url, this.paramsPostBody(this.data,false), requestConfig);
                     break;
                 case RequestType.delete:
-                    response = await axios.delete(`${this.url}?${this.paramsPostBody(this.data)}`, requestConfig);
+                    response = await axios.delete(`${this.url}${this.paramsPostBody(this.data,true)}`, requestConfig);
                     break;
             }
         } catch (e) {
@@ -70,7 +70,7 @@ export class Ajax<T>{
         return result;
     }
 
-    private paramsPostBody(obj: any) {
+    private paramsPostBody(obj: any,get:boolean) {
         var result = '';//接受最后结果
         var item;
         for (item in obj) {
@@ -79,6 +79,6 @@ export class Ajax<T>{
         if (result) {
             result = result.slice(1)//去掉第一个&
         }
-        return result
+        return  (get && result ? '?':'') + result
     }
 }

@@ -30,7 +30,7 @@ export default function Statistic(props: statisticProps) {
                 data2[i - 11][1] = d[1];
             }
         })
-        chart = Highcharts.stockChart('statisticChart', ChartsConfig.setStatisticChart(data1, data2));
+        chart = Highcharts.stockChart('statisticChart', ChartsConfig.setStatisticChart(data1, data2,chart));
     }
 
     let updateChart = (range: Array<number>) => {
@@ -47,7 +47,6 @@ export default function Statistic(props: statisticProps) {
         console.log("data2", data2)
         chart.series[0].update({ data: data1 });
         chart.series[1].update({ data: data2 });
-        window.test = chart;
     }
 
     return (

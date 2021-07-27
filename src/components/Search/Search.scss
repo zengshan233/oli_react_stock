@@ -11,7 +11,7 @@
             width: 60px;
             height: 60px;
             margin-left: 30px;
-            background-color: red;
+            background-color: #ceced5;
         }
         .MuiPaper-root {
             display: flex;
@@ -57,9 +57,14 @@
         height: 80px;
         margin: 0 auto;
         .icon {
-            width: 80px;
-            height: 80px;
-            background-color: red;
+            width: 75px;
+            height: 75px;
+            border-radius: 10px;
+            line-height: 75px;
+            text-align: center;
+            color: #fffffc;
+            font-weight: bold;
+            background-color: #ceced5;
         }
         .stock-info {
             width: 580px;

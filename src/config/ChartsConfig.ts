@@ -1,4 +1,5 @@
 import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem, StatisticData } from "../models/ChartModels";
+import dateFormat from "../utils/dateFormat";
 
 
 class ChartsConfig {
@@ -118,7 +119,14 @@ class ChartsConfig {
                 offset: 0,
             }],
             xAxis: [{
-                tickAmount: 4,
+                labels: {
+                    style:{"fontSize": "10px" },
+                    formatter: function():any {
+                        let value:number = (this as any).value;
+                        return dateFormat("YYYY/mm/dd",new Date(value));
+                    }
+                },
+                tickAmount: 6,
                 tickColor: '#929292',
                 tickLength: 4,
                 tickWidth: 1,
@@ -198,7 +206,7 @@ class ChartsConfig {
         };
     }
 
-    public static setStatisticChart = (data1: Array<StatisticData>, data2: Array<StatisticData>) => {
+    public static setStatisticChart = (data1: Array<StatisticData>, data2: Array<StatisticData>, chart?:any) => {
         return {
             chart: {
                 events: {
@@ -235,6 +243,13 @@ class ChartsConfig {
                 }
             }],
             xAxis: [{
+                labels: {
+                    style:{"fontSize": "10px" },
+                    formatter: function():any {
+                        let value:number = (this as any).value;
+                        return dateFormat("mm/dd",new Date(value));
+                    }
+                },
                 startOnTick:true,
                 tickAmount: 6,
                 tickColor: '#342619',
