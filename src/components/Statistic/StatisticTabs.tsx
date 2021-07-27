@@ -1,39 +1,37 @@
 
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import ChartsConfig from '../../config/ChartsConfig';
+import { StatisticType } from '../../services/StatisticService';
 import './Statistic.scss';
 
-const tabs: Array<any> = [
-    { text: '收入', key: 1 },
-    { text: '资产', key: 2 },
-    { text: '现金流', key: 3 },
-];
 
-interface StatisticTabProps{
-    onChanged?:Function
+
+interface StatisticTabProps {
+    onChanged?: Function
 }
 
-export default function StatisticTabs(props:StatisticTabProps) {
-    let history = useHistory();
-    const [checkedTab, changeTab] = useState(1);
+export default function StatisticTabs(props: StatisticTabProps) {
+    const [checkedTab, changeTab] = useState(StatisticType.incomes);
     const [checkedPosition, changePosition] = useState('0');
-    let onChange = (key: number, index: number) => {
-        changeTab(key);
-        changePosition(((100 / tabs.length) * index) + '%');
-        props?.onChanged &&   props?.onChanged(key);
+    let config:ChartsConfig = new ChartsConfig();
+    let onChange = (type: StatisticType, index: number) => {
+        changeTab(type);
+        changePosition(((100 /config.statisticTabs.length) * index) + '%');
+        props?.onChanged && props?.onChanged(type);
     };
     return (
         <div className="statisticTabWrapper">
             <div className="taberContainer">
                 <div className="tabBar" style={{
-                    width: (100 / tabs.length) + '%',
+                    width: (100 / config.statisticTabs.length) + '%',
                     left: checkedPosition
                 }}
                 ></div>
                 <div className="taber">
-                    {tabs.map((t, i) => {
-                        return <div className={checkedTab === t.key ? 'tabItemChecked' : 'tabItem'} onClick={() => {
-                            onChange(t.key, i);
+                    {config.statisticTabs.map((t, i) => {
+                        return <div className={checkedTab === t.type ? 'tabItemChecked' : 'tabItem'} onClick={() => {
+                            onChange(t.type, i);
                             return;
                         }}>
                             {t.text}

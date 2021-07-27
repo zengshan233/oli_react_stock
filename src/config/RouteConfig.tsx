@@ -1,7 +1,7 @@
 
 import App from "../components/App";
 import { FullScreenCharts } from "../components/Charts/FullScreenChart";
-import Statistic from "../components/Statistic/Statistic";
+import { Statistic } from "../components/Statistic/Statistic";
 import StockData from "../components/StockData/StockData";
 
 const routes = [

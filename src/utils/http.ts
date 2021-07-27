@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import AppConfig from '../config/AppConfig';
 
 enum RequestType {
     get,
@@ -41,25 +42,26 @@ export class Ajax<T>{
     }
 
     private async request(type: RequestType): Promise<T> {
-        let response: AxiosResponse;
+        let response: AxiosResponse<T>;
         let requestConfig = {
             headers: {
                 'content-type': "application/x-www-form-urlencoded; charset=UTF-8",
             }
         };
+        let url = AppConfig.host+this.url;
         try {
             switch (type) {
                 case RequestType.get:
-                    response = await axios.get(`${this.url}${this.paramsPostBody(this.data,true)}`, requestConfig);
+                    response = await axios.get(`${url}${this.paramsPostBody(this.data,true)}`, requestConfig);
                     break;
                 case RequestType.post:
-                    response = await axios.post(this.url, this.paramsPostBody(this.data,false), requestConfig);
+                    response = await axios.post(url, this.paramsPostBody(this.data,false), requestConfig);
                     break;
                 case RequestType.put:
-                    response = await axios.put(this.url, this.paramsPostBody(this.data,false), requestConfig);
+                    response = await axios.put(url, this.paramsPostBody(this.data,false), requestConfig);
                     break;
                 case RequestType.delete:
-                    response = await axios.delete(`${this.url}${this.paramsPostBody(this.data,true)}`, requestConfig);
+                    response = await axios.delete(`${url}${this.paramsPostBody(this.data,true)}`, requestConfig);
                     break;
             }
         } catch (e) {

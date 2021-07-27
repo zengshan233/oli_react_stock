@@ -1,4 +1,5 @@
-import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem, StatisticData } from "../models/ChartModels";
+import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem, StatisticData, StatisticTab } from "../models/ChartModels";
+import { StatisticType } from "../services/StatisticService";
 import dateFormat from "../utils/dateFormat";
 
 
@@ -120,10 +121,10 @@ class ChartsConfig {
             }],
             xAxis: [{
                 labels: {
-                    style:{"fontSize": "10px" },
-                    formatter: function():any {
-                        let value:number = (this as any).value;
-                        return dateFormat("YYYY/mm/dd",new Date(value));
+                    style: { "fontSize": "10px" },
+                    formatter: function (): any {
+                        let value: number = (this as any).value;
+                        return dateFormat("YYYY/mm/dd", new Date(value));
                     }
                 },
                 tickAmount: 6,
@@ -206,7 +207,7 @@ class ChartsConfig {
         };
     }
 
-    public static setStatisticChart = (data1: Array<StatisticData>, data2: Array<StatisticData>, chart?:any) => {
+    public static setStatisticChart = (data1: Array<Array<number>>, data2: Array<Array<number>>) => {
         return {
             chart: {
                 events: {
@@ -244,13 +245,13 @@ class ChartsConfig {
             }],
             xAxis: [{
                 labels: {
-                    style:{"fontSize": "10px" },
-                    formatter: function():any {
-                        let value:number = (this as any).value;
-                        return dateFormat("mm/dd",new Date(value));
+                    style: { "fontSize": "10px" },
+                    formatter: function (): any {
+                        let value: number = (this as any).value;
+                        return dateFormat("mm/dd", new Date(value));
                     }
                 },
-                startOnTick:true,
+                startOnTick: true,
                 tickAmount: 6,
                 tickColor: '#342619',
                 tickLength: 6,
@@ -302,6 +303,12 @@ class ChartsConfig {
         // new SeriesItem('ATR', 'atr', -1, 14, true, false),
         // new SeriesItem('CCI', 'cci', -1, 14, true, false),
     ]
+
+    public statisticTabs: Array<StatisticTab> = [
+        new StatisticTab('收入', StatisticType.assets, ['总收入', '净收入']),
+        new StatisticTab('资产', StatisticType.incomes, ['总资产', '总负债']),
+        new StatisticTab('现金流', StatisticType.cashFlows, ['总现金', '净增减额'])
+    ];
 }
 
 

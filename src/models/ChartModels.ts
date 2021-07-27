@@ -1,3 +1,5 @@
+import { StatisticType } from "../services/StatisticService";
+
 enum OptionType {
     indicators = 'highcharts-indicators',
     shapeLabel = 'highcharts-label-annotation',
@@ -135,5 +137,16 @@ class ChartItem {
     }
 }
 
+class StatisticTab {
+    public text: string;
+    public type: StatisticType;
+    public tips: Array<string>;
+    constructor(_text: string, _type: StatisticType, _tips: Array<string>) {
+        this.text = _text;
+        this.type = _type;
+        this.tips = _tips;
+    }
+}
 
-export { OptionType, ChartOptions, ChartOptionItem, OhlcData, VolumeData, SeriesItem, ChartItem ,StatisticData};
+
+export { OptionType, ChartOptions, ChartOptionItem, OhlcData, VolumeData, SeriesItem, ChartItem, StatisticData,StatisticTab };
