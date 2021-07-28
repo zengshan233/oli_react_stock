@@ -1,68 +1,69 @@
 import { OptionType, ChartOptionItem, ChartOptions, OhlcData, VolumeData, SeriesItem, StatisticData, StatisticTab } from "../models/ChartModels";
 import { StatisticType } from "../services/StatisticService";
+import icons from "../images/images";
 import dateFormat from "../utils/dateFormat";
 
 
 class ChartsConfig {
     public basicOptions: Array<ChartOptions> = [
-        new ChartOptions(1, 'fullscreen.svg', [], undefined, OptionType.full),
-        new ChartOptions(2, 'indicators.svg', [], 'Indicators', OptionType.indicators),
-        new ChartOptions(3, 'series-ohlc.svg', [
-            new ChartOptionItem(OptionType.seriesOhlc, 'OHLC', 'series-ohlc.svg'),
-            new ChartOptionItem(OptionType.seriesLine, 'Line', 'series-line.svg'),
-            new ChartOptionItem(OptionType.seriesCandlestick, 'Candlestick', 'series-candlestick.svg'),
+        new ChartOptions(1, icons.fullscreen, [], undefined, OptionType.full),
+        new ChartOptions(2, icons.indicators, [], 'Indicators', OptionType.indicators),
+        new ChartOptions(3, icons.series_ohlc, [
+            new ChartOptionItem(OptionType.seriesOhlc, 'OHLC', icons.series_ohlc),
+            new ChartOptionItem(OptionType.seriesLine, 'Line',icons.series_line),
+            new ChartOptionItem(OptionType.seriesCandlestick, 'Candlestick', icons.series_candlestick),
         ], 'Series type'),
-        new ChartOptions(4, 'label.svg', [
-            new ChartOptionItem(OptionType.shapeLabel, 'Lable', 'label.svg'),
-            new ChartOptionItem(OptionType.shapeCircle, 'Circle', 'circle.svg'),
-            new ChartOptionItem(OptionType.shapeRectangle, 'Rectangle', 'rectangle.svg'),
+        new ChartOptions(4, icons.label, [
+            new ChartOptionItem(OptionType.shapeLabel, 'Lable',icons.label),
+            new ChartOptionItem(OptionType.shapeCircle, 'Circle', icons.circle),
+            new ChartOptionItem(OptionType.shapeRectangle, 'Rectangle', icons.rectangle),
         ], 'Shapes'),
     ]
     public options: Array<ChartOptions> = [
-        new ChartOptions(5, 'segment.svg', [
-            new ChartOptionItem(OptionType.lineSegment, 'Segment', 'segment.svg'),
-            new ChartOptionItem(OptionType.lineArrowSegment, 'Arrow Segment', 'arrow-segment.svg'),
-            new ChartOptionItem(OptionType.lineRay, 'Ray', 'ray.svg'),
-            new ChartOptionItem(OptionType.lineArrowRay, 'Arrow Ray', 'arrow-ray.svg'),
-            new ChartOptionItem(OptionType.line, 'Line', 'line.svg'),
-            new ChartOptionItem(OptionType.lineArrow, 'Arrow', 'arrow-line.svg'),
-            new ChartOptionItem(OptionType.lineHorizontal, 'Horizontal', 'horizontal-line.svg'),
-            new ChartOptionItem(OptionType.lineVertical, 'Vertical', 'vertical-line.svg'),
+        new ChartOptions(5, icons.segment, [
+            new ChartOptionItem(OptionType.lineSegment, 'Segment', icons.segment),
+            new ChartOptionItem(OptionType.lineArrowSegment, 'Arrow Segment', icons.arrow_segment),
+            new ChartOptionItem(OptionType.lineRay, 'Ray', icons.ray),
+            new ChartOptionItem(OptionType.lineArrowRay, 'Arrow Ray', icons.arrow_ray),
+            new ChartOptionItem(OptionType.line, 'Line', icons.line),
+            new ChartOptionItem(OptionType.lineArrow, 'Arrow', icons.arrow_line),
+            new ChartOptionItem(OptionType.lineHorizontal, 'Horizontal',icons.horizontal_line),
+            new ChartOptionItem(OptionType.lineVertical, 'Vertical',icons.vertical_line),
         ], 'Lines'),
-        new ChartOptions(6, 'elliott-3.svg', [
-            new ChartOptionItem(OptionType.elliott3, 'Elliott 3', 'elliott-3.svg'),
-            new ChartOptionItem(OptionType.elliott5, 'Elliott 5', 'elliott-5.svg'),
-            new ChartOptionItem(OptionType.crooked3, 'Crooked 3', 'crooked-3.svg'),
-            new ChartOptionItem(OptionType.crooked5, 'Crooked 5', 'crooked-5.svg'),
+        new ChartOptions(6, icons.elliott3, [
+            new ChartOptionItem(OptionType.elliott3, icons.elliott3, icons.elliott3),
+            new ChartOptionItem(OptionType.elliott5,icons.elliott5, icons.elliott5),
+            new ChartOptionItem(OptionType.crooked3, icons.crooked3, icons.crooked3),
+            new ChartOptionItem(OptionType.crooked5, icons.crooked5, icons.crooked5),
         ], 'Crooked lines'),
-        new ChartOptions(7, 'measure-xy.svg', [
-            new ChartOptionItem(OptionType.measureXY, 'Measure XY', 'measure-xy.svg'),
-            new ChartOptionItem(OptionType.measureX, 'Measure X', 'measure-x.svg'),
-            new ChartOptionItem(OptionType.measureY, 'Measure Y', 'measure-y.svg'),
+        new ChartOptions(7, icons.measure_xy, [
+            new ChartOptionItem(OptionType.measureXY, 'Measure XY', icons.measure_xy),
+            new ChartOptionItem(OptionType.measureX, 'Measure X',icons.measure_x),
+            new ChartOptionItem(OptionType.measureY, 'Measure Y',icons.measure_y),
         ], 'Measure'),
-        new ChartOptions(8, 'fibonacci.svg', [
-            new ChartOptionItem(OptionType.fibonacci, 'Fibonacci', 'fibonacci.svg'),
-            new ChartOptionItem(OptionType.pitchfork, 'Pitchfork', 'pitchfork.svg'),
-            new ChartOptionItem(OptionType.parallel, 'Parallel', 'parallel-channel.svg'),
+        new ChartOptions(8, icons.fibonacci, [
+            new ChartOptionItem(OptionType.fibonacci, 'Fibonacci', icons.fibonacci),
+            new ChartOptionItem(OptionType.pitchfork, 'Pitchfork', icons.pitchfork),
+            new ChartOptionItem(OptionType.parallel, 'Parallel', icons.parallel_channel),
         ], 'Advanced'),
-        new ChartOptions(9, 'vertical-counter.svg', [
-            new ChartOptionItem(OptionType.counter, 'Counter', 'vertical-counter.svg'),
-            new ChartOptionItem(OptionType.counterLabel, 'Label', 'vertical-label.svg'),
-            new ChartOptionItem(OptionType.counterArrow, 'Arrow', 'vertical-arrow.svg'),
+        new ChartOptions(9, icons.vertical_counter, [
+            new ChartOptionItem(OptionType.counter, 'Counter', icons.vertical_counter),
+            new ChartOptionItem(OptionType.counterLabel, 'Label', icons.vertical_label),
+            new ChartOptionItem(OptionType.counterArrow, 'Arrow', icons.vertical_arrow),
         ], 'Counters'),
-        new ChartOptions(10, 'flag-elipse.svg', [
-            new ChartOptionItem(OptionType.flagsCircle, 'Circle', 'flag-elipse.svg'),
-            new ChartOptionItem(OptionType.flagsDiamond, 'Diamond', 'flag-diamond.svg'),
-            new ChartOptionItem(OptionType.flagsSquare, 'Square', 'flag-trapeze.svg'),
-            new ChartOptionItem(OptionType.flagsSimple, 'Simple', 'flag-basic.svg'),
+        new ChartOptions(10, icons.flag_elipse, [
+            new ChartOptionItem(OptionType.flagsCircle, 'Circle', icons.flag_elipse),
+            new ChartOptionItem(OptionType.flagsDiamond, 'Diamond', icons.flag_diamond),
+            new ChartOptionItem(OptionType.flagsSquare, 'Square', icons.flag_trapeze),
+            new ChartOptionItem(OptionType.flagsSimple, 'Simple', icons.flag_basic),
         ], 'Flags'),
 
-        new ChartOptions(11, 'annotations-visible.svg', [], undefined, OptionType.toggle),
-        new ChartOptions(12, 'current-price-show.svg', [], undefined, OptionType.price),
-        new ChartOptions(13, 'zoom-x.svg', [
-            new ChartOptionItem(OptionType.zoomX, 'Zoom X', 'zoom-x.svg'),
-            new ChartOptionItem(OptionType.zoomY, 'Zoom Y', 'zoom-y.svg'),
-            new ChartOptionItem(OptionType.zoomXY, 'Zoom XY', 'zoom-xy.svg'),
+        new ChartOptions(11, icons.annotations_visible, [], undefined, OptionType.toggle),
+        new ChartOptions(12, icons.current_price_show, [], undefined, OptionType.price),
+        new ChartOptions(13, icons.zoom_x, [
+            new ChartOptionItem(OptionType.zoomX, 'Zoom X',icons.zoom_x),
+            new ChartOptionItem(OptionType.zoomY, 'Zoom Y', icons.zoom_y),
+            new ChartOptionItem(OptionType.zoomXY, 'Zoom XY', icons.zoom_xy),
         ]),
     ];
 

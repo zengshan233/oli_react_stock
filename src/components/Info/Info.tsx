@@ -1,16 +1,16 @@
 
 import { useState } from 'react';
-import { useHistory } from 'react-router';
+import ChartStore from '../../stores/ChartStore';
+import icons from '../../images/images';
 import './Info.scss';
 
 const tabs: Array<any> = [
-    { icon: 'statistic.svg', iconOff: 'statistic_off.svg', key: 1, link: '/' },
-    { icon: 'statistic.svg', iconOff: 'statistic_off.svg', key: 2, link: '/data' },
-    { icon: 'statistic.svg', iconOff: 'statistic_off.svg', key: 3, link: '/' },
+    { icon: icons.statistic, iconOff: icons.statistic_off, key: 1 },
+    { icon: icons.statistic, iconOff: icons.statistic_off, key: 2 },
+    { icon: icons.statistic, iconOff: icons.statistic_off, key: 3 },
 ];
 
 export default function Info() {
-    let history = useHistory();
     const [checkedTab, changeTab] = useState(1);
     const [checkedPosition, changePosition] = useState('0');
     let onChange = (key: number, index: number) => {
@@ -23,11 +23,11 @@ export default function Info() {
                 <div className="taber">
                     {tabs.map((t, i) => {
                         return <div className="tabItem" onClick={() => {
-                            history.push(t.link);
+                            ChartStore.stockTab = t.key;
                             onChange(t.key, i);
                             return;
                         }}>
-                            <img src={require(`../../images/${checkedTab == t.key ? t.icon : t.iconOff}`).default}></img>
+                            <img src={ChartStore.stockTab == t.key ? t.icon : t.iconOff}></img>
                         </div>
                     })}
                 </div>

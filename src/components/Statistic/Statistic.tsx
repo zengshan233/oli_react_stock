@@ -8,11 +8,8 @@ import './Statistic.scss';
 import StatisticTabs from './StatisticTabs';
 import KeepAlive, { AliveScope } from 'react-activation';
 
-interface statisticProps extends RouteConfigComponentProps {
-    routes?: any;
-}
 
-export const Statistic = observer((props: statisticProps) => {
+export const Statistic = observer(() => {
     useEffect(() => {
         StatisticStore.paintChart();
     }, []);

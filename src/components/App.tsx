@@ -1,7 +1,4 @@
 import { Charts } from "./Charts/Charts";
-import { StickyContainer, Sticky } from 'react-sticky';
-import styles from '../scss/App.module.scss';
-import Routes from "./Routes";
 import { Search } from "./Search/Search";
 import Info from "./Info/Info";
 import { useEffect } from "react";
@@ -11,38 +8,34 @@ import ChartStore from '../stores/ChartStore';
 import Lottie from 'react-lottie-player'
 import loading from '../lottie/loading.json';
 import { FullScreenCharts } from "./Charts/FullScreenChart";
-interface AppProps {
-  routes: any;
-}
+import { Statistic } from "./Statistic/Statistic";
+import StockData from "./StockData/StockData";
 
-export const App = observer((props: AppProps) => {
+
+export const App = observer(() => {
   useEffect(() => {
     registerGlobalFuncs();
   }, [])
-  if (!ChartStore.init) {
-    return <div></div>
-  }
-  if (ChartStore.pending) {
-    return <div className="loading">
-      <Lottie
-        className="plane"
-        loop
-        animationData={loading}
-        play
-      />
-
-    </div>
-  }
   if (ChartStore.fullScreen) {
     return <FullScreenCharts />;
   }
-
   return (
     <div className="App">
       <Search />
       <Charts />
       <Info />
-      <Routes routes={props.routes} />
+      {ChartStore.stockTab == 1 ? <Statistic /> : ChartStore.stockTab == 2 ? <StockData /> : <div></div>
+      }
+      <div className="loading" style={{ display: ChartStore.pending ? 'block' : 'none' }}>
+        {ChartStore.init && <Lottie
+          className="plane"
+          style={{}}
+          loop
+          animationData={loading}
+          play
+        />}
+
+      </div>
     </div>
   );
 });

@@ -20,6 +20,6 @@ export default function registerGlobalFuncs() {
         ChartStore.pending = false;
         ChartStore.paintChart(false, data);
         StatisticStore.paintChart(statisticData);
-        console.log("data", data)
+
     }
 }

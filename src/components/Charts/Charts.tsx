@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import ChartsConfig from '../../config/ChartsConfig';
 import ChartStore from '../../stores/ChartStore';
 import { MenuBtn } from './Menu';
+import icons from '../../images/images';
 import './Chart.scss';
 
 export const Charts = observer(() => {
@@ -24,14 +25,14 @@ export const Charts = observer(() => {
         }
         ChartStore.setCurrentOption(tab.id)
       }} title="Simple shapes">
-        <img className="highcharts-menu-item-btn" src={require(`../../images/${icon}`).default}></img>
+        <img className="highcharts-menu-item-btn" src={icon}></img>
         {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
         {ChartStore.currentOptionId == tab.id && <ul id={`optionMenu${tab.id}`}>
           {tab.options.map((option, i) => (
             <li key={i} className={option.type} title={option.lable} onClick={(e) => {
               ChartStore.onTypePicked(tab.id, option.icon);
             }} >
-              <img className="highcharts-menu-item-btn" src={require(`../../images/${option.icon}`).default}></img>
+              <img className="highcharts-menu-item-btn" src={option.icon}></img>
               <span className="highcharts-menu-item-title">{option.lable}</span>
             </li>
           ))}
@@ -39,7 +40,7 @@ export const Charts = observer(() => {
       </li>
     );
   });
-  optionList.push(<li key='more' className="more" onClick={() => { ChartStore.showMore() }}> <img src={require(`../../images/more.svg`).default}></img></li>);
+  optionList.push(<li key='more' className="more" onClick={() => { ChartStore.showMore() }}> <img src={icons.more}></img></li>);
   optionList.push(<div key='clear' className="clear"></div>);
   return (
     <div className="chart-wrapper">
@@ -55,14 +56,14 @@ export const Charts = observer(() => {
                 <li key={idx} onClick={() => {
                   ChartStore.setCurrentOption(tab.id)
                 }} title="Simple shapes">
-                  <img className="highcharts-menu-item-btn" src={require(`../../images/${icon}`).default}></img>
+                  <img className="highcharts-menu-item-btn" src={icon}></img>
                   {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
                   {ChartStore.currentOptionId == tab.id && <ul>
                     {tab.options.map((option, i) => (
                       <li key={i} className={option.type} title={option.lable} onClick={(e) => {
                         ChartStore.onTypePicked(tab.id, option.icon);
                       }}  >
-                        <img className="highcharts-menu-item-btn" src={require(`../../images/${option.icon}`).default}></img>
+                        <img className="highcharts-menu-item-btn" src={option.icon}></img>
                         <span className="highcharts-menu-item-title">{option.lable}</span>
                       </li>
                     ))}

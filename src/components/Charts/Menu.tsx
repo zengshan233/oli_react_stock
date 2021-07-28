@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import ChartsConfig from '../../config/ChartsConfig';
 import { ChartItem, SeriesItem } from '../../models/ChartModels';
 import ChartStore from '../../stores/ChartStore';
+import icons from '../../images/images';
 import { observer } from 'mobx-react';
 
 export const MenuBtn = observer(() => {
@@ -42,7 +43,7 @@ export const MenuBtn = observer(() => {
     return (
         <li className="Indicators">
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                <img className={styles.img} src={require(`../../images/indicators.svg`).default} />
+                <img className={styles.img} src={icons.indicators} />
             </Button>
             <Menu
                 className={styles.menu}

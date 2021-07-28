@@ -1,10 +1,11 @@
 import { observer } from 'mobx-react';
+import icons from '../../images/images';
 import ChartStore from '../../stores/ChartStore';
 import StatisticStore from '../../stores/StatisticStore';
 import './Search.scss';
 
 export const Search = observer(() => {
-    if (!StatisticStore.summary || !StatisticStore.incomes || !StatisticStore.assets ) {
+    if (!StatisticStore.summary || !StatisticStore.incomes || !StatisticStore.assets) {
         return (<div></div>);
     }
     let symbolList: Array<string> = StatisticStore.summary?.symbol.split('_');
@@ -40,11 +41,11 @@ export const Search = observer(() => {
                 <div className="stock-info">
                     <div className='top-info'>
                         <div className="title-info"><div className="title">{symbolList[0]}</div> <div className="subtitle">{symbolList[1]}</div></div>
-                      {ChartStore.stockData &&  <div className="data">{curClose}({((curClose - preClose) / preClose * 100).toFixed(2)}%)</div>}
+                        {ChartStore.stockData && <div className="data">{curClose}({((curClose - preClose) / preClose * 100).toFixed(2)}%)</div>}
                     </div>
                     <div className='bottom-info'>
                         <div className="abstract">{StatisticStore.summary.name}</div>
-                        <img className="follow" src={require(`../../images/add.svg`).default}></img>
+                        <img className="follow" src={icons.icon_add}></img>
                     </div>
                 </div>
             </div>

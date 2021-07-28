@@ -14,9 +14,10 @@ class ChartStore {
     iconMap: any = {};
     stockData: any = [];
     currentOptionId?: number;
-    init:boolean = false;
-    pending: boolean = false;
+    init: boolean = false;
+    pending: boolean = true;
     fullScreen: boolean = false;
+    stockTab: number = 1;
 
     constructor() {
         makeAutoObservable(this);
@@ -39,7 +40,7 @@ class ChartStore {
         if (data) {
             this.stockData = data;
         }
-        console.log("paintChartpaintChartpaintChartpaintChart",this.stockData)
+        console.log("paintChartpaintChartpaintChartpaintChart", this.stockData)
         let ohlc: Array<OhlcData> = [],
             volume: Array<VolumeData> = [];
         for (var i in this.stockData) {
