@@ -13,7 +13,7 @@ export const Search = observer(() => {
     let incomeList: Array<string> = StatisticStore.incomes?.net_incomes.split(',');
     let assetList: Array<string> = StatisticStore.assets?.total_assets.split(',');
     let liabsList: Array<string> = StatisticStore.assets?.total_liabs.split(',');
-    let year: string = yearsList[1].replace('-', '/');
+    let year: string = yearsList[1].split("-").reverse().join('/');
     let income: string = (((parseFloat(revenueList[0]) - parseFloat(revenueList[1])) / parseFloat(revenueList[1])) * 100).toFixed(2);
     let netIncome: string = (((parseFloat(incomeList[0]) - parseFloat(incomeList[1])) / parseFloat(incomeList[1])) * 100).toFixed(2);
     let curAsset = parseFloat(assetList[0]) - parseFloat(liabsList[0]);

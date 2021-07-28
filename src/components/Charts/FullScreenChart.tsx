@@ -6,18 +6,16 @@ import { useHistory } from "react-router-dom";
 
 import './Chart.scss';
 import { MenuBtn } from './Menu';
-import { RouteConfigComponentProps } from 'react-router-config';
 
 export const FullScreenCharts = observer(() => {
     const optionsConfig: ChartsConfig = new ChartsConfig();
 
-    let history = useHistory();
     useEffect(() => {
         ChartStore.paintChart(true);
     }, []);
     let optionList = [...optionsConfig.basicOptions, ...optionsConfig.options];
     return (
-        <div className="chart-wrapper  chart-full-wrapper">
+        <div className="chart-wrapper  chart-full-wrapper" style={{ paddingTop: '30px' }}>
             <div className="highcharts-stocktools-wrapper highcharts-bindings-container highcharts-bindings-wrapper">
                 <div className="highcharts-menu-wrapper">
                     <ul className="highcharts-stocktools-toolbar stocktools-toolbar">
@@ -25,6 +23,7 @@ export const FullScreenCharts = observer(() => {
                             if (idx === 1) {
                                 return <MenuBtn key={idx} />
                             }
+                            let icon = ChartStore.iconMap[tab.id];
                             return (
 
                                 <li key={idx} onClick={() => {
@@ -34,7 +33,7 @@ export const FullScreenCharts = observer(() => {
                                     }
                                     ChartStore.setCurrentOption(tab.id)
                                 }} title="Simple shapes">
-                                    <img className="highcharts-menu-item-btn" src={require(`../../images/${ChartStore.iconMap[tab.id]}`).default}></img>
+                                    <img className="highcharts-menu-item-btn" src={require(`../../images/${icon}`).default}></img>
                                     {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
                                     {ChartStore.currentOptionId === tab.id && <ul>
                                         {tab.options.map((option, i) => (
