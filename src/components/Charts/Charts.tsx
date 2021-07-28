@@ -1,21 +1,16 @@
 import { observer } from 'mobx-react';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import ChartsConfig from '../../config/ChartsConfig';
 import ChartStore from '../../stores/ChartStore';
 import { MenuBtn } from './Menu';
-import { useHistory } from "react-router-dom";
 import './Chart.scss';
 
 export const Charts = observer(() => {
   const optionsConfig: ChartsConfig = new ChartsConfig();
-  useEffect(() => {
-    ChartStore.paintChart(false);
-  }, []);
-  console.log("ChartStore", ChartStore);
-  if (!ChartStore) {
-    return (<div></div>);
-  }
-  let history = useHistory();
+  
+  useEffect(()=>{
+        ChartStore.paintChart(false);
+  },[])
   let optionList = optionsConfig.basicOptions.map((tab, idx) => {
     if (idx == 1) {
       return <MenuBtn key={idx} />
@@ -24,7 +19,7 @@ export const Charts = observer(() => {
     return (
       <li key={idx} onClick={() => {
         if (idx == 0) {
-          history.push('/fullScreenChart');
+          ChartStore.fullScreen = true;
           return;
         }
         ChartStore.setCurrentOption(tab.id)

@@ -1,21 +1,19 @@
-
 body,
 html {
   width: 100%;
   height: 100%;
- 
+  background-color: #000;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App{
+.App {
   background-color: #000;
   width: 100%;
 }
@@ -23,7 +21,22 @@ body {
 #root {
   width: 100%;
   height: 100%;
+  overflow: scroll;
 }
 .clear {
   clear: both;
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .plane {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

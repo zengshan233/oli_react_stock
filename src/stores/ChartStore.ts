@@ -1,7 +1,6 @@
 import { makeAutoObservable, } from "mobx";
 import ChartsConfig from "../config/ChartsConfig";
 import { OhlcData, SeriesItem, VolumeData } from "../models/ChartModels";
-import StockChart from 'highcharts/modules/stock';
 import { Ajax } from "../utils/http";
 
 class ChartStore {
@@ -13,7 +12,11 @@ class ChartStore {
     seriesIndex: number;
     seriesPeriod: number;
     iconMap: any = {};
+    stockData: any = [];
     currentOptionId?: number;
+    init:boolean = false;
+    pending: boolean = false;
+    fullScreen: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -31,34 +34,24 @@ class ChartStore {
         })
     }
 
-    public async paintChart(full: boolean) {
-        let _self = this;
+    public async paintChart(full: boolean, data?: any) {
         var Highcharts: any = (window as any).Highcharts;
-        let data: any = await new Ajax('http://oliapi-env.eba-z24vycvy.ap-southeast-2.elasticbeanstalk.com/prices?symbol=bhp_asx').get();
-
+        if (data) {
+            this.stockData = data;
+        }
+        console.log("paintChartpaintChartpaintChartpaintChart",this.stockData)
         let ohlc: Array<OhlcData> = [],
             volume: Array<VolumeData> = [];
-        for (var i in data) {
-            // ohlc.push(new OhlcData(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
-            // volume.push(
-            //     new VolumeData(
-            //         data[i][0],
-            //         data[i][5],
-            //         data[i][1] <= data[i][4] ? "#227565" : "#cf4e63"
-            //     )
-            // );
-
-            ohlc.push(new OhlcData(data[i].time, data[i].open, data[i].high, data[i].low, data[i].close))
+        for (var i in this.stockData) {
+            ohlc.push(new OhlcData(this.stockData[i].time, this.stockData[i].open, this.stockData[i].high, this.stockData[i].low, this.stockData[i].close))
             volume.push(
-              new VolumeData(
-                data[i].time,
-                data[i].volume,
-                data[i].open <= data[i].close ? "#227565" : "#cf4e63"
-              )
+                new VolumeData(
+                    this.stockData[i].time,
+                    this.stockData[i].volume,
+                    this.stockData[i].open <= this.stockData[i].close ? "#227565" : "#cf4e63"
+                )
             );
         }
-
-
         //   for (var i in data) {
         //     ohlc.push(new OhlcData(data[i].time, data[i].open, data[i].high, data[i].low, data[i].close))
         //     volume.push(
@@ -71,7 +64,7 @@ class ChartStore {
         //   }
         ohlc.sort((a, b) => a.x - b.x);
         volume.sort((a, b) => a.x - b.x);
-        _self.chart = Highcharts.stockChart('container', ChartsConfig.setChart(ohlc, volume, full));
+        this.chart = Highcharts.stockChart('container', ChartsConfig.setChart(ohlc, volume, full));
         Highcharts.setOptions(ChartsConfig.langOptions);
         Highcharts.dateFormat();
     }

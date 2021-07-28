@@ -7,12 +7,8 @@ import { useHistory } from "react-router-dom";
 import './Chart.scss';
 import { MenuBtn } from './Menu';
 import { RouteConfigComponentProps } from 'react-router-config';
-    
-interface FullScreenProps extends RouteConfigComponentProps {
-    routes?: any;
-}
 
-export const FullScreenCharts = observer((props:FullScreenProps) => {
+export const FullScreenCharts = observer(() => {
     const optionsConfig: ChartsConfig = new ChartsConfig();
 
     let history = useHistory();
@@ -33,7 +29,7 @@ export const FullScreenCharts = observer((props:FullScreenProps) => {
 
                                 <li key={idx} onClick={() => {
                                     if (idx === 0) {
-                                        history.goBack();
+                                        ChartStore.fullScreen = false;
                                         return;
                                     }
                                     ChartStore.setCurrentOption(tab.id)

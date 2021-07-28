@@ -20,6 +20,12 @@ export class StaticticService {
     }
 }
 
+/*Summary*/
+export interface Summary {
+    symbol: string;
+    name: string;
+    date: number;
+  }
 
 /*Incomes*/
 export interface Incomes {
@@ -63,9 +69,10 @@ export interface CashFlows {
 
 /*tsModel3*/
 export interface StatisticResponse {
+    summary:Summary;
     incomes: Incomes;
     assets: Assets;
-    cashFlows: CashFlows;
+    cash_flows: CashFlows;
 }
 
 export enum StatisticType {

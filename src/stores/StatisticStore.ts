@@ -3,10 +3,11 @@ import ChartsConfig from "../config/ChartsConfig";
 import { OhlcData, SeriesItem, StatisticData, VolumeData } from "../models/ChartModels";
 import StockChart from 'highcharts/modules/stock';
 import { Ajax } from "../utils/http";
-import { Assets, CashFlows, Incomes, StaticticService, StatisticResponse, StatisticType } from "../services/StatisticService";
+import { Assets, CashFlows, Incomes, StaticticService, StatisticResponse, StatisticType, Summary } from "../services/StatisticService";
 
 class StatisticStore {
     chart: any;
+    summary?: Summary;
     incomes?: Incomes;
     assets?: Assets;
     cashFlows?: CashFlows;
@@ -17,24 +18,26 @@ class StatisticStore {
         let chartConfig = new ChartsConfig();
     }
 
-    public async paintChart() {
-        let statisticData: StatisticResponse;
-        try {
-            statisticData = await new StaticticService('apt_asx').send();
-        } catch (e) {
+    public async paintChart(statisticData?: StatisticResponse) {
+        if (statisticData) {
+            this.incomes = statisticData.incomes;
+            this.assets = statisticData.assets;
+            this.cashFlows = statisticData.cash_flows;
+            this.summary = statisticData.summary;
+        } else if (!this.chart) {
             return;
         }
-        this.incomes = statisticData.incomes;
-        this.assets = statisticData.assets;
-        this.cashFlows = statisticData.cashFlows;
-        this.handleTabChange(StatisticType.assets);
+        setTimeout(() => {
+            this.handleTabChange(StatisticType.assets, true);
+        }, 0);
     }
 
-    handleTabChange(type: StatisticType) {
+    handleTabChange(type: StatisticType, init: boolean = false) {
         var Highcharts: any = (window as any).Highcharts;
         let line1: Array<Array<number>> = [], line2: Array<Array<number>> = [];
+
         this.type = type;
-        switch (type) {
+        switch (this.type) {
             case StatisticType.incomes:
                 let datesIncomes: Array<string> = this.incomes?.financial_years?.split(",") || [];
                 let revenues: Array<string> = this.incomes?.total_revenues?.split(",") || [];
@@ -61,17 +64,14 @@ class StatisticStore {
                     line1.push([Date.parse(datesCashFlows[i]), parseFloat(cashes[i])]);
                     line2.push([Date.parse(datesCashFlows[i]), parseFloat(changeInCashes[i])]);
                 }
-                console.log('line1',line1)
-                console.log('line2',line2)
                 break;
         }
-        if (this.chart) {
+        if (this.chart && !init) {
             this.chart.series[0].update({ data: line1 });
             this.chart.series[1].update({ data: line2 });
         } else {
             this.chart = Highcharts.stockChart('statisticChart', ChartsConfig.setStatisticChart(line1, line2));
         }
-
     }
 }
 
