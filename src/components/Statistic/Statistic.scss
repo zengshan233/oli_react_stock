@@ -11,6 +11,7 @@
         .taberContainer {
             position: relative;
             box-sizing: border-box;
+            height: 60px;
             .taber {
                 position: absolute;
                 left: 0;
@@ -18,10 +19,12 @@
                 right: 0;
                 bottom: 0;
                 display: flex;
+                height: 60px;
                 box-sizing: border-box;
                 .tabItem,
                 .tabItemChecked {
                     cursor: pointer;
+                    height: 60px;
                     box-sizing: border-box;
                     line-height: 60px;
                     font-size: 28px;
@@ -29,9 +32,9 @@
                     color: #a0a0a0;
                     text-align: center;
                     width: 33.33%;
-                    cursor: pointer;
                 }
                 .tabItemChecked {
+                    cursor: pointer;
                     color: #aaaaaa;
                 }
             }
@@ -58,40 +61,41 @@
         }
         .statisInfo {
             float: right;
-            .content{
+            .content {
                 margin-bottom: 35px;
                 color: #a6a6a6;
                 font-size: 18px;
                 text-align: right;
-                .value{
+                .value {
                     font-weight: bold;
                     font-size: 20px;
                 }
             }
-            .content:last-child{
+            .content:last-child {
                 margin-bottom: 0;
             }
         }
     }
-    .tipsWrapper{
+    .tipsWrapper {
         width: 500px;
-        margin:0 auto;
+        margin: 0 auto;
         display: flex;
-        .tips{
+        .tips {
             width: 220px;
             display: flex;
             align-items: center;
-            .line1,.line2{
+            .line1,
+            .line2 {
                 width: 30px;
                 height: 15px;
             }
-            .line1{
+            .line1 {
                 background-color: #a86c24;
             }
-            .line2{
+            .line2 {
                 background-color: #2476a8;
             }
-            .tipsInfo{
+            .tipsInfo {
                 margin-left: 20px;
                 color: #afafaf;
                 font-size: 18px;

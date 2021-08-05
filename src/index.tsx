@@ -7,17 +7,14 @@ import {
 } from "react-router-dom";
 import routesConfig from './config/RouteConfig';
 import Routes from './components/Routes';
+import { App } from './components/App';
 
 ReactDOM.render(
-  <Router>
-    <Routes routes={routesConfig} />
-
-    {/* <Route path='/index' component={Stock} >
-      <Route path='/index/statistic' component={Statistic} />
-      <Route path='/index/data' component={StockData} />
-    </Route>
-    <Route path='/fullScreenChart' component={FullScreenCharts} /> */}
-  </Router>,
+  // <Router>
+  //   <Routes routes={routesConfig} />
+  // </Router>
+  <App />
+  ,
   document.getElementById('root')
 );
 

@@ -2,7 +2,6 @@ import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import ChartsConfig from '../../config/ChartsConfig';
 import ChartStore from '../../stores/ChartStore';
-import { useHistory } from "react-router-dom";
 
 import './Chart.scss';
 import { MenuBtn } from './Menu';
@@ -33,14 +32,14 @@ export const FullScreenCharts = observer(() => {
                                     }
                                     ChartStore.setCurrentOption(tab.id)
                                 }} title="Simple shapes">
-                                    <img className="highcharts-menu-item-btn" src={require(`../../images/${icon}`).default}></img>
+                                    <img className="highcharts-menu-item-btn" src={icon}></img>
                                     {tab.lable && <span className="highcharts-menu-item-title">{tab.lable}</span>}
                                     {ChartStore.currentOptionId === tab.id && <ul>
                                         {tab.options.map((option, i) => (
                                             <li key={i} className={option.type} title={option.lable} onClick={(e) => {
                                                 ChartStore.onTypePicked(tab.id, option.icon);
                                             }}  >
-                                                <img className="highcharts-menu-item-btn" src={require(`../../images/${option.icon}`).default}></img>
+                                                <img className="highcharts-menu-item-btn" src={option.icon}></img>
                                                 <span className="highcharts-menu-item-title">{option.lable}</span>
                                             </li>
                                         ))}
